@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deniz Mokhtari | Fashion Marketing & Communication Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main: #191919;
+            --main-mid: #2d2d2d;
+            --main-soft: #505050;
+            --main-light: #808080;
+            --main-pale: #e8e5e2;
+            --accent: #8C7360;
+            --accent-mid: #a08b78;
+            --accent-soft: #b8a494;
+            --accent-light: #DCD2C8;
+            --cloud: #f2f0ee;
+            --mist: #faf9f7;
+            --pearl: #ffffff;
+            --warm-gray: #808080;
+            --text: #333333;
+
+            --hero-gradient: linear-gradient(135deg, #191919 0%, #2d2d2d 40%, #505050 100%);
+            --accent-gradient: linear-gradient(135deg, #8C7360 0%, #a08b78 100%);
+            --warm-gradient: linear-gradient(180deg, #8C7360 0%, #a08b78 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--mist);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+        /* ============================================
+           LOADING SCREEN
+           ============================================ */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--mist);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-inner {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-circle {
+            position: absolute;
+            inset: 0;
+        }
+
+        .loader-circle circle {
+            fill: none;
+            stroke: var(--accent-soft);
+            stroke-width: 1;
+            stroke-linecap: round;
+            stroke-dasharray: 340;
+            stroke-dashoffset: 340;
+            animation: drawCircle 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            transform-origin: center;
+        }
+
+        @keyframes drawCircle {
+            0% { stroke-dashoffset: 340; transform: rotate(-90deg); }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -340; transform: rotate(270deg); }
+        }
+
+        .loader-monogram {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--main);
+            letter-spacing: 6px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(25, 25, 25, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 30px rgba(25, 25, 25, 0.15);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--pearl);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--pearl);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--warm-gradient);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-links a:hover { color: var(--accent-light); }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--pearl);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(25, 25, 25, 0.97);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--pearl);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-menu a:hover { color: var(--accent-light); }
+
+        /* ============================================
+           HERO SECTION - FIXED, FULL PAGE
+           ============================================ */
+        .hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--hero-gradient);
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .ocean-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .wave-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background-repeat: repeat-x;
+            background-position: 0 bottom;
+        }
+
+        .wave-layer-1 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23DCD2C8' fill-opacity='0.15' d='M0,224L48,218.7C96,213,192,203,288,181.3C384,160,480,128,576,138.7C672,149,768,203,864,202.7C960,203,1056,149,1152,138.7C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: 1440px 100%;
+            animation: wave 12s linear infinite;
+        }
+
+        .wave-layer-2 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%238C7360' fill-opacity='0.15' d='M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,149.3C672,149,768,203,864,224C960,245,1056,235,1152,213.3C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: 1440px 100%;
+            animation: wave 8s linear infinite reverse;
+        }
+
+        .wave-layer-3 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23505050' fill-opacity='0.3' d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,218.7C672,203,768,149,864,144C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: 1440px 100%;
+            animation: wave 15s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .color-splash {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .splash-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-light);
+            top: 5%;
+            right: -5%;
+            opacity: 0.2;
+            animation: floatSplash 10s ease-in-out infinite;
+        }
+
+        .splash-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--main-light);
+            bottom: 25%;
+            left: -5%;
+            opacity: 0.2;
+            animation: floatSplash 12s ease-in-out infinite reverse;
+        }
+
+        .splash-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-soft);
+            top: 45%;
+            left: 35%;
+            opacity: 0.12;
+            animation: floatSplash 8s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatSplash {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 5%;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .hero-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 6.5rem;
+            font-weight: 300;
+            color: var(--pearl);
+            line-height: 1.05;
+            margin-bottom: 0;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .name-highlight { display: inline; }
+
+        .name-deniz {
+            background: var(--warm-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 1px;
+            background: var(--accent-soft);
+            margin: 1.8rem auto;
+            opacity: 0;
+            animation: slideUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .hero-text p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 0.8; }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--warm-gradient);
+            color: var(--pearl);
+            font-weight: 500;
+            box-shadow: 0 4px 20px rgba(140, 115, 96, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(140, 115, 96, 0.45);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pearl);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-outline:hover {
+            background: var(--pearl);
+            color: var(--accent);
+            border-color: var(--pearl);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.8s;
+        }
+
+        .scroll-indicator span {
+            color: var(--pearl);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 38px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 14px;
+            position: relative;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-mouse::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--pearl);
+            border-radius: 3px;
+            animation: scrollWheel 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        @keyframes scrollWheel {
+            0%, 100% { opacity: 1; top: 6px; }
+            50% { opacity: 0.3; top: 16px; }
+        }
+
+        /* ============================================
+           HERO SPACER
+           ============================================ */
+        .hero-spacer {
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        /* ============================================
+           MAIN CONTENT - ROLLS OVER HERO
+           ============================================ */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            background: var(--mist);
+            border-radius: 50px 50px 0 0;
+            margin-top: -60px;
+            box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Section Reveal Animations */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-section.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-section.revealed .reveal-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-section.revealed .reveal-item:nth-child(1) { transition-delay: 0.1s; }
+        .reveal-section.revealed .reveal-item:nth-child(2) { transition-delay: 0.2s; }
+        .reveal-section.revealed .reveal-item:nth-child(3) { transition-delay: 0.3s; }
+        .reveal-section.revealed .reveal-item:nth-child(4) { transition-delay: 0.4s; }
+        .reveal-section.revealed .reveal-item:nth-child(5) { transition-delay: 0.5s; }
+        .reveal-section.revealed .reveal-item:nth-child(6) { transition-delay: 0.6s; }
+        .reveal-section.revealed .reveal-item:nth-child(7) { transition-delay: 0.7s; }
+        .reveal-section.revealed .reveal-item:nth-child(8) { transition-delay: 0.8s; }
+
+        /* Section Common Styles */
+        section {
+            padding: 7rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 .wave-accent {
+            color: var(--accent);
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            width: 50px;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 3px;
+        }
+
+        .divider-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-soft);
+            border-radius: 50%;
+        }
+
+        .section-header p {
+            color: var(--warm-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            background: var(--pearl);
+            padding-top: 5rem;
+        }
+
+        .about-splash {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .about-splash-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--main-soft);
+            top: -100px;
+            right: -100px;
+            opacity: 0.25;
+        }
+
+        .about-splash-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-light);
+            bottom: -50px;
+            left: -50px;
+            opacity: 0.15;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 25px;
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+
+        .about-image:hover::before {
+            top: 12px;
+            left: -12px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(140, 115, 96, 0.2);
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .about-text h3 span { color: var(--main); }
+
+        .about-text p {
+            color: var(--warm-gray);
+            margin-bottom: 1.3rem;
+            font-size: 1rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, rgba(140,115,96,0.08) 0%, rgba(220,210,200,0.06) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(140,115,96,0.12);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(140,115,96,0.15);
+        }
+
+        .highlight-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-label {
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        /* ============================================
+           PORTFOLIO SECTION
+           ============================================ */
+        .portfolio { background: var(--mist); }
+
+        .portfolio-splash {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .portfolio-splash-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--main-pale);
+            top: 10%;
+            left: -150px;
+            opacity: 0.4;
+        }
+
+        .portfolio-splash-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-light);
+            bottom: 10%;
+            right: -100px;
+            opacity: 0.15;
+        }
+
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.6rem;
+            border: none;
+            background: transparent;
+            color: var(--warm-gray);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+            position: relative;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-mid));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .filter-btn:hover::before,
+        .filter-btn.active::before {
+            opacity: 1;
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--pearl);
+        }
+
+        .portfolio-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            columns: 3;
+            column-gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-item:hover img { transform: scale(1.08); }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(25,25,25,0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+        .portfolio-overlay h4 {
+            color: var(--pearl);
+            font-size: 1.25rem;
+            margin-bottom: 0.3rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay h4 { transform: translateY(0); }
+
+        .portfolio-overlay span {
+            color: var(--main-soft);
+            font-size: 0.85rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay span { transform: translateY(0); }
+
+        
+
+        /* ============================================
+           SERVICES SECTION
+           ============================================ */
+        .services {
+            background: var(--main);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .services-splash {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .services-splash-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-light);
+            top: -100px;
+            right: 10%;
+            opacity: 0.12;
+        }
+
+        .services-splash-2 {
+            width: 350px;
+            height: 350px;
+            background: var(--main-light);
+            bottom: -80px;
+            left: 5%;
+            opacity: 0.15;
+        }
+
+        .services .section-header h2 { color: var(--pearl); }
+        .services .section-header h2 .wave-accent { color: var(--accent-light); }
+        .services .section-header p { color: var(--pearl); opacity: 0.8; }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--warm-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .service-icon {
+            width: 65px;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--pearl);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .service-card h4 {
+            color: var(--pearl);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           EXPERIENCE SECTION
+           ============================================ */
+        .experience { background: var(--pearl); }
+
+        .experience-splash {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .experience-splash-1 {
+            width: 350px;
+            height: 350px;
+            background: var(--main-pale);
+            top: 20%;
+            left: -100px;
+            opacity: 0.35;
+        }
+
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 3px;
+        }
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 25px;
+            width: 18px;
+            height: 18px;
+            background: var(--warm-gradient);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 5px var(--pearl), 0 5px 20px rgba(140,115,96,0.3);
+            z-index: 2;
+        }
+
+        .exp-date {
+            text-align: right;
+            padding-right: 2rem;
+        }
+
+        .exp-date-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent-gradient);
+            color: var(--pearl);
+            font-size: 0.8rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .exp-content { padding-left: 2rem; }
+
+        .exp-content h4 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+        .exp-content h5 {
+            color: var(--main);
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .exp-content p {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           SKILLS SECTION
+           ============================================ */
+        .skills {
+            background: linear-gradient(180deg, var(--cloud) 0%, var(--mist) 100%);
+        }
+
+        .skills-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.9rem 1.8rem;
+            background: var(--pearl);
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 50px;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(140,115,96,0.12);
+            border-color: var(--accent-soft);
+        }
+
+        /* ============================================
+           DOWNLOAD CV SECTION
+           ============================================ */
+        .download-cv {
+            background: var(--pearl);
+            text-align: center;
+        }
+
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1.1rem 2.8rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 50px;
+            background: var(--warm-gradient);
+            color: var(--pearl);
+            box-shadow: 0 4px 20px rgba(140, 115, 96, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cv-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(140, 115, 96, 0.45);
+        }
+
+        .cv-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--pearl);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            background: var(--hero-gradient);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            transform: rotate(180deg);
+        }
+
+        .contact .section-header h2 { color: var(--pearl); }
+        .contact .section-header h2 .wave-accent { color: var(--accent-light); }
+        .contact .section-header p { color: var(--pearl); opacity: 0.85; }
+
+        .contact .section-divider::before,
+        .contact .section-divider::after {
+            background: var(--pearl);
+            opacity: 0.5;
+        }
+
+        .contact .divider-dot { background: var(--pearl); opacity: 0.6; }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-email {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--pearl);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--warm-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-email:hover::after { transform: scaleX(1); }
+        .contact-email:hover { color: var(--accent-light); }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pearl);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: var(--pearl);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(140,115,96,0.3);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--main);
+            padding: 2.5rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--pearl);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           LIGHTBOX (macOS-style window)
+           ============================================ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-window {
+            position: relative;
+            max-width: 85vw;
+            max-height: 88vh;
+            background: #f0f0f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+            transform: scale(0.92);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lightbox.active .lightbox-window {
+            transform: scale(1);
+        }
+
+        .lightbox-header {
+            height: 36px;
+            min-height: 36px;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 8px;
+            border-bottom: 1px solid #d0d0d0;
+        }
+
+        .lb-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .lb-dot-close {
+            background: #ff5f57;
+            cursor: pointer;
+            transition: filter 0.15s ease;
+        }
+
+        .lb-dot-close:hover { filter: brightness(0.85); }
+
+        .lb-dot-min { background: #febc2e; }
+        .lb-dot-max { background: #28c840; }
+
+        .lightbox-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            background: #f6f6f6;
+        }
+
+        .lightbox-body img {
+            display: block;
+            max-width: 100%;
+            max-height: calc(88vh - 76px);
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1024px) {
+            .hero-text h1 { font-size: 4.5rem; }
+
+            .portfolio-grid { columns: 2; }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+
+            .experience-timeline::before { left: 0; }
+
+            .experience-item {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                padding-left: 2rem;
+            }
+
+            .experience-item::before {
+                left: 0;
+                transform: translateX(0);
+            }
+
+            .exp-date {
+                text-align: left;
+                padding-right: 0;
+            }
+
+            .exp-content { padding-left: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+
+            .hero-text h1 { font-size: 3.2rem; }
+            .hero-text .subtitle { font-size: 1.1rem; letter-spacing: 2px; }
+            .section-header h2 { font-size: 2.3rem; }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .about-highlights {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+
+            .portfolio-grid { columns: 2; }
+
+            .portfolio-filter { gap: 0.5rem; }
+            .filter-btn { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
+
+            .contact-email { font-size: 1.5rem; }
+            .social-link { width: 48px; height: 48px; font-size: 0.75rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2.4rem; }
+            .hero-text .subtitle { font-size: 0.95rem; letter-spacing: 1.5px; }
+
+            .about-highlights { grid-template-columns: 1fr; }
+
+            .highlight-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .highlight-number { font-size: 1.8rem; }
+            .highlight-label { margin-top: 0; }
+
+            .portfolio-grid { columns: 1; }
+
+            section { padding: 5rem 4%; }
+            .section-header h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <svg class="loader-circle" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54"/>
+            </svg>
+            <span class="loader-monogram">DM</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Deniz Mokhtari</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero Section (Fixed, Full Page) -->
+    <section class="hero">
+        <div class="color-splash splash-1"></div>
+        <div class="color-splash splash-2"></div>
+        <div class="color-splash splash-3"></div>
+
+        <div class="ocean-waves">
+            <div class="wave-layer wave-layer-1"></div>
+            <div class="wave-layer wave-layer-2"></div>
+            <div class="wave-layer wave-layer-3"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span class="name-highlight">
+                        <span class="name-deniz">Deniz</span>
+                    </span>
+                    Mokhtari
+                </h1>
+                <div class="hero-line"></div>
+                <p class="subtitle">Fashion Marketing & Communication</p>
+                <p>Bridging the worlds of fashion and visual communication through illustration, branding, and creative strategy. Crafting compelling narratives that connect brands with their audiences.</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-mouse"></div>
+        </div>
+    </section>
+
+    <!-- Hero Spacer -->
+    <div class="hero-spacer"></div>
+
+    <!-- Main Content (Rolls over hero) -->
+    <div class="main-content">
+
+        <!-- About Section -->
+        <section id="about" class="about reveal-section">
+            <div class="about-splash about-splash-1"></div>
+            <div class="about-splash about-splash-2"></div>
+
+            <div class="section-header">
+                <h2>About <span class="wave-accent">Me</span></h2>
+                <div class="section-divider"><span class="divider-dot"></span></div>
+                <p>Where fashion meets visual storytelling and strategic communication</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-image reveal-item">
+                    <img src="about.jpg" alt="About Deniz">
+                </div>
+                <div class="about-text">
+                    <h3 class="reveal-item">Fashion-Forward <span>Visual Thinker</span></h3>
+                    <p class="reveal-item">I'm a fashion marketing and communication specialist with a passion for digital illustration. My work lives at the intersection of fashion, branding, and visual storytelling — where creative strategy meets artistic expression.</p>
+                    <p class="reveal-item">With a background rooted in fashion design and illustration, I create everything from detailed fashion sketches and character designs to complete brand identities and motif patterns for apparel and lifestyle brands.</p>
+                    <p class="reveal-item">Whether it's developing visual content for a fashion campaign, designing exhibition materials for cultural institutions, or leading a full clinic rebrand, I bring a strategic eye and a designer's sensibility to every project.</p>
+
+                    <a href="#contact" class="btn btn-primary reveal-item">Let's Collaborate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio reveal-section">
+            <div class="portfolio-splash portfolio-splash-1"></div>
+            <div class="portfolio-splash portfolio-splash-2"></div>
+
+            <div class="section-header">
+                <h2>Selected <span class="wave-accent">Work</span></h2>
+                <div class="section-divider"><span class="divider-dot"></span></div>
+                <p>A curated collection of fashion designs, character designs, and motif designs</p>
+            </div>
+
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="fashion">Fashion Design</button>
+                <button class="filter-btn" data-filter="character">Character Design</button>
+                <button class="filter-btn" data-filter="motif">Motif Design</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="IMG_2597.JPG" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="IMG_2599.JPG" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="3334.jpeg" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="IMG_2571.JPG" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="IMG_2572.JPG" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="IMG_2575.JPG" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="IMG_2576.JPG" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="fashion">
+                    <img src="IMG_2577.JPG" alt="Fashion Design">
+                    <div class="portfolio-overlay">
+                        <h4>Fashion Illustration</h4>
+                        <span>Fashion Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="character">
+                    <img src="IMG_2564.JPG" alt="Character Design">
+                    <div class="portfolio-overlay">
+                        <h4>Character Design</h4>
+                        <span>Character Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="character">
+                    <img src="IMG_2565.JPG" alt="Character Design">
+                    <div class="portfolio-overlay">
+                        <h4>Character Design</h4>
+                        <span>Character Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="character">
+                    <img src="IMG_2566.JPG" alt="Character Design">
+                    <div class="portfolio-overlay">
+                        <h4>Character Design</h4>
+                        <span>Character Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="character">
+                    <img src="IMG_2568.JPG" alt="Character Design">
+                    <div class="portfolio-overlay">
+                        <h4>Character Design</h4>
+                        <span>Character Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="character">
+                    <img src="IMG_2567.JPG" alt="Character Design">
+                    <div class="portfolio-overlay">
+                        <h4>Character Design</h4>
+                        <span>Character Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="character">
+                    <img src="IMG_2570.JPG" alt="Character Design">
+                    <div class="portfolio-overlay">
+                        <h4>Character Design</h4>
+                        <span>Character Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="motif">
+                    <img src="photo_6012625606908427720_y.jpg" alt="Motif Design">
+                    <div class="portfolio-overlay">
+                        <h4>Motif Design</h4>
+                        <span>Motif Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="motif">
+                    <img src="photo_6012625606908427736_y.jpg" alt="Motif Design">
+                    <div class="portfolio-overlay">
+                        <h4>Motif Design</h4>
+                        <span>Motif Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="motif">
+                    <img src="photo_6012625606908427738_y.jpg" alt="Motif Design">
+                    <div class="portfolio-overlay">
+                        <h4>Motif Design</h4>
+                        <span>Motif Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="motif">
+                    <img src="photo_6012625606908427740_y.jpg" alt="Motif Design">
+                    <div class="portfolio-overlay">
+                        <h4>Motif Design</h4>
+                        <span>Motif Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="motif">
+                    <img src="photo_6012625606908427742_y.jpg" alt="Motif Design">
+                    <div class="portfolio-overlay">
+                        <h4>Motif Design</h4>
+                        <span>Motif Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="motif">
+                    <img src="photo_6012625606908427744_y.jpg" alt="Motif Design">
+                    <div class="portfolio-overlay">
+                        <h4>Motif Design</h4>
+                        <span>Motif Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal-item" data-category="motif">
+                    <img src="photo_6012625606908427753_y.jpg" alt="Motif Design">
+                    <div class="portfolio-overlay">
+                        <h4>Motif Design</h4>
+                        <span>Motif Design</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services reveal-section">
+            <div class="services-splash services-splash-1"></div>
+            <div class="services-splash services-splash-2"></div>
+
+            <div class="section-header">
+                <h2>What I <span class="wave-accent">Do</span></h2>
+                <div class="section-divider"><span class="divider-dot"></span></div>
+                <p>From fashion illustration to brand strategy and visual communication</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal-item">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M6 2l3 5H3l3-5z"/><path d="M18 2l3 5h-6l3-5z"/><path d="M3 7h18v2H3z"/><path d="M5 9l1 13h12l1-13"/><path d="M9 9v8M12 9v8M15 9v8"/></svg>
+                    </div>
+                    <h4>Fashion Illustration & Design</h4>
+                    <p>Bringing garment concepts to life through expressive digital sketches, lookbook visuals, and textile motif patterns for fashion and lifestyle brands.</p>
+                </div>
+
+                <div class="service-card reveal-item">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 3c-2 0-3.5 1-4 2.5C7 4 5.5 4.5 5 6c-1 0-2 1-2 2.5S4 11 5 11h1l2 8h8l2-8h1c1 0 2-1 2-2.5S19 6 19 6c-.5-1.5-2-2-3-1.5C15.5 4 14 3 12 3z"/><circle cx="10" cy="8" r="1"/><circle cx="14" cy="8" r="1"/><path d="M10 11c0 1 1 2 2 2s2-1 2-2"/></svg>
+                    </div>
+                    <h4>Character & Visual Storytelling</h4>
+                    <p>Creating original 2D characters and narrative illustrations, collaborating with writers and creative directors to develop visual worlds.</p>
+                </div>
+
+                <div class="service-card reveal-item">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v7M14 17.5h7"/></svg>
+                    </div>
+                    <h4>Branding & Communication</h4>
+                    <p>Building cohesive brand identities and marketing visuals — from logo design and social media assets to campaign imagery and exhibition materials.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience reveal-section">
+            <div class="experience-splash experience-splash-1"></div>
+
+            <div class="section-header">
+                <h2>My <span class="wave-accent">Journey</span></h2>
+                <div class="section-divider"><span class="divider-dot"></span></div>
+                <p>Building a career at the crossroads of fashion, illustration, and brand communication</p>
+            </div>
+
+            <div class="experience-timeline">
+                <div class="experience-item reveal-item">
+                    <div class="exp-date">
+                        <span class="exp-date-label">Present</span>
+                    </div>
+                    <div class="exp-content">
+                        <h4>Freelance Fashion Illustrator</h4>
+                        <h5>Fashion Illustration, Character Design & Motif Design</h5>
+                        <p>Creating fashion illustrations and motif designs for designers and apparel brands. Developing original characters and visual storytelling assets for creative teams and independent projects.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item reveal-item">
+                    <div class="exp-date">
+                        <span class="exp-date-label">Previous</span>
+                    </div>
+                    <div class="exp-content">
+                        <h4>Art Project Assistant</h4>
+                        <h5>Opal Centre, Tehran</h5>
+                        <p>Developed visual content and promotional materials for fashion exhibitions and cultural events. Supported branding initiatives and collaborated with creative teams on marketing collateral across print and digital channels.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item reveal-item">
+                    <div class="exp-date">
+                        <span class="exp-date-label">Previous</span>
+                    </div>
+                    <div class="exp-content">
+                        <h4>Branding & Visual Design Intern</h4>
+                        <h5>Dena Clinic</h5>
+                        <p>Led a complete brand overhaul — designing the new visual identity including logo, brand patterns, staff uniform graphics, and social media campaigns for a cohesive cross-platform presence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills reveal-section">
+            <div class="section-header">
+                <h2>Tools & <span class="wave-accent">Skills</span></h2>
+                <div class="section-divider"><span class="divider-dot"></span></div>
+                <p>Creative tools and expertise across fashion, illustration, and brand communication</p>
+            </div>
+
+            <div class="skills-content">
+                <span class="skill-tag reveal-item">Adobe Illustrator</span>
+                <span class="skill-tag reveal-item">Adobe Photoshop</span>
+                <span class="skill-tag reveal-item">Adobe InDesign</span>
+                <span class="skill-tag reveal-item">Figma</span>
+                <span class="skill-tag reveal-item">Canva</span>
+                <span class="skill-tag reveal-item">CLO3D</span>
+                <span class="skill-tag reveal-item">WordPress</span>
+                <span class="skill-tag reveal-item">Fashion Illustration</span>
+                <span class="skill-tag reveal-item">Motif & Textile Design</span>
+                <span class="skill-tag reveal-item">Character Design</span>
+                <span class="skill-tag reveal-item">Brand Identity</span>
+                <span class="skill-tag reveal-item">Fashion Marketing</span>
+                <span class="skill-tag reveal-item">Visual Communication</span>
+                <span class="skill-tag reveal-item">Print & Digital Design</span>
+            </div>
+        </section>
+
+        <!-- Download CV Section -->
+        <section id="cv" class="download-cv reveal-section">
+            <div class="section-header">
+                <h2>Download <span class="wave-accent">CV</span></h2>
+                <div class="section-divider"><span class="divider-dot"></span></div>
+                <p>Get a detailed overview of my experience, skills, and education</p>
+            </div>
+            <a href="cv.pdf" download class="cv-btn reveal-item">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download CV
+            </a>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact reveal-section">
+            <div class="contact-waves">
+                <div class="wave-layer wave-layer-1"></div>
+                <div class="wave-layer wave-layer-2"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>Let's Create <span class="wave-accent">Together</span></h2>
+                <div class="section-divider"><span class="divider-dot"></span></div>
+                <p>Open to fashion projects, brand collaborations, and creative partnerships</p>
+            </div>
+
+            <div class="contact-content">
+                <a href="mailto:denizz.mokhtari@gmail.com" class="contact-email reveal-item">denizz.mokhtari@gmail.com</a>
+
+                <div class="social-links reveal-item">
+                    <a href="https://instagram.com/dornellam" class="social-link" title="Instagram" target="_blank">IG</a>
+                    <a href="https://linkedin.com/in/denizmokhtari" class="social-link" title="LinkedIn" target="_blank">Li</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Deniz Mokhtari. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Lightbox (macOS-style window) -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-window" id="lightboxWindow">
+            <div class="lightbox-header">
+                <div class="lb-dot lb-dot-close" id="lightboxClose"></div>
+                <div class="lb-dot lb-dot-min"></div>
+                <div class="lb-dot lb-dot-max"></div>
+            </div>
+            <div class="lightbox-body">
+                <img src="" alt="Full size" id="lightboxImg">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var loadStart = Date.now();
+
+            function hideLoader() {
+                var elapsed = Date.now() - loadStart;
+                var remaining = Math.max(0, 1000 - elapsed);
+                setTimeout(function() {
+                    document.getElementById('loader').classList.add('hidden');
+                }, remaining);
+            }
+
+            if (document.readyState === 'complete') {
+                hideLoader();
+            } else {
+                window.addEventListener('load', hideLoader);
+            }
+        })();
+
+        var navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        var revealSections = document.querySelectorAll('.reveal-section');
+        var revealOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+
+        var revealOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, revealOptions);
+
+        revealSections.forEach(function(section) {
+            revealOnScroll.observe(section);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        var filterBtns = document.querySelectorAll('.filter-btn');
+        var portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+
+                var filter = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(function(item) {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Lightbox
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightboxImg');
+        var lightboxWindow = document.getElementById('lightboxWindow');
+        var lightboxClose = document.getElementById('lightboxClose');
+
+        portfolioItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var src = item.querySelector('img').src;
+                lightboxImg.src = src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        lightbox.addEventListener('click', function(e) {
+            if (!lightboxWindow.contains(e.target)) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Mobile menu
+        var navToggle = document.querySelector('.nav-toggle');
+        var mobileMenu = document.getElementById('mobileMenu');
+
+        navToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    setTimeout(function() {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
