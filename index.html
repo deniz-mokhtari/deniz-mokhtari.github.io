@@ -806,8 +806,9 @@
         .portfolio-grid {
             max-width: 1400px;
             margin: 0 auto;
-            columns: 3;
-            column-gap: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             position: relative;
             z-index: 1;
         }
@@ -818,8 +819,6 @@
             border-radius: 20px;
             cursor: pointer;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
@@ -829,6 +828,8 @@
 
         .portfolio-item img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -1371,7 +1372,7 @@
         @media (max-width: 1024px) {
             .hero-text h1 { font-size: 4.5rem; }
 
-            .portfolio-grid { columns: 2; }
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
 
             .services-grid {
                 grid-template-columns: 1fr;
@@ -1417,7 +1418,7 @@
                 gap: 0.8rem;
             }
 
-            .portfolio-grid { columns: 2; }
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
 
             .portfolio-filter { gap: 0.5rem; }
             .filter-btn { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
@@ -1443,7 +1444,7 @@
             .highlight-number { font-size: 1.8rem; }
             .highlight-label { margin-top: 0; }
 
-            .portfolio-grid { columns: 1; }
+            .portfolio-grid { grid-template-columns: 1fr; }
 
             section { padding: 5rem 4%; }
             .section-header h2 { font-size: 2rem; }
@@ -1864,7 +1865,7 @@
                 <div class="section-divider"><span class="divider-dot"></span></div>
                 <p>Get a detailed overview of my experience, skills, and education</p>
             </div>
-            <a href="https://github.com/deniz-mokhtari/deniz-mokhtari.github.io/blob/main/cv.pdf" download class="cv-btn reveal-item">
+            <a href="cv.pdf" download class="cv-btn reveal-item">
                 <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download CV
             </a>
@@ -2030,6 +2031,13 @@
         navToggle.addEventListener('click', function() {
             mobileMenu.classList.toggle('open');
             document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            }
         });
 
         mobileMenu.querySelectorAll('a').forEach(function(link) {
