@@ -3,607 +3,1419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deniz Mokhtari | Marketing & Visual Design Specialist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Deniz Mokhtari | Creative Portfolio</title>
+    <meta name="description" content="Deniz Mokhtari is a marketing and visual design specialist working across fashion, textile design, branding, visual identity, research, and illustration.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy: #002C54;
-            --navy-light: #0A4A7A;
-            --navy-bright: #1565A0;
-            --red: #C5001A;
-            --red-light: #E0334A;
-            --light: #FDF6F6;
-            --light-dim: #F0E8E8;
-            --black: #111111;
-            --black-soft: #333333;
-            --pearl: #ffffff;
-
-            --hero-gradient: radial-gradient(circle at 35% 45%, #1565A0 0%, #0A4A7A 30%, #003A6B 55%, #002C54 100%);
-            --accent-gradient: linear-gradient(135deg, #C5001A 0%, #E0334A 100%);
-            --warm-gradient: linear-gradient(180deg, #E0334A 0%, #C5001A 100%);
+            --cream: #f7f1e8;
+            --paper: #fffaf2;
+            --sand: #ded0bf;
+            --shell: #ece1d3;
+            --mist: #d8dfdb;
+            --sage: #8f9c92;
+            --ink: #1f211d;
+            --soft-ink: #666057;
+            --muted: #8c857b;
+            --line: rgba(31, 33, 29, 0.14);
+            --white: #ffffff;
+            --shadow: 0 24px 70px rgba(67, 55, 42, 0.12);
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Inter', Arial, sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light);
-            color: var(--black-soft);
-            line-height: 1.7;
+            background: var(--cream);
+            color: var(--ink);
+            font-family: var(--sans);
+            line-height: 1.65;
             overflow-x: hidden;
+            text-rendering: optimizeLegibility;
         }
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+        :focus-visible {
+            outline: 2px solid rgba(143, 156, 146, 0.75);
+            outline-offset: 4px;
+        }
+        h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; line-height: 0.98; }
+        p { color: var(--soft-ink); }
 
-        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
-
-        /* LOADING SCREEN */
         .loader {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
+            background: var(--cream);
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         .loader.hidden { opacity: 0; visibility: hidden; }
-        .loader-inner { position: relative; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; }
-        .loader-circle { position: absolute; inset: 0; }
-        .loader-circle circle { fill: none; stroke: var(--navy); stroke-width: 1; stroke-linecap: round; stroke-dasharray: 340; stroke-dashoffset: 340; animation: drawCircle 1.6s cubic-bezier(0.4,0,0.2,1) infinite; transform-origin: center; }
-        @keyframes drawCircle { 0% { stroke-dashoffset: 340; transform: rotate(-90deg); } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -340; transform: rotate(270deg); } }
-        .loader-monogram { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--navy); letter-spacing: 6px; }
+        .loader-mark {
+            width: 96px;
+            height: 96px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 1.7rem;
+            letter-spacing: 0.18em;
+            animation: loaderPulse 1.4s ease-in-out infinite;
+        }
+        @keyframes loaderPulse {
+            50% { transform: scale(0.96); opacity: 0.58; }
+        }
 
-        /* NAVIGATION - on navy hero, text is light */
-        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: all 0.5s cubic-bezier(0.4,0,0.2,1); }
-        nav.scrolled { background: rgba(0,44,84,0.95); backdrop-filter: blur(20px); padding: 1rem 5%; box-shadow: 0 4px 30px rgba(0,44,84,0.2); }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--light); text-decoration: none; letter-spacing: 2px; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: var(--light); text-decoration: none; font-size: 0.9rem; font-weight: 400; letter-spacing: 0.5px; position: relative; padding: 0.5rem 0; transition: color 0.3s ease; }
-        .nav-links a::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
-        .nav-links a:hover::before { transform: scaleX(1); transform-origin: left; }
-        .nav-links a:hover { color: var(--red-light); }
-        .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
-        .nav-toggle span { width: 25px; height: 2px; background: var(--light); transition: all 0.3s ease; }
+        .site-nav {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            z-index: 1000;
+            width: min(1180px, calc(100% - 32px));
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 1.6rem;
+            border: 1px solid rgba(255, 250, 242, 0.38);
+            border-radius: 999px;
+            background: rgba(31, 33, 29, 0.22);
+            color: var(--paper);
+            backdrop-filter: blur(18px);
+            transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .site-nav.scrolled {
+            background: rgba(255, 250, 242, 0.9);
+            color: var(--ink);
+            border-color: var(--line);
+            box-shadow: 0 18px 45px rgba(67, 55, 42, 0.1);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.35rem;
+            list-style: none;
+        }
+        .nav-links a,
+        .menu-toggle {
+            font-size: 0.76rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 1.05em;
+            overflow: hidden;
+            color: inherit;
+            opacity: 0.86;
+            line-height: 1;
+            transition: opacity 0.25s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus-visible { opacity: 1; }
+        .nav-links a span {
+            display: block;
+            line-height: 1;
+            transition: transform 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .nav-links a::after {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 100%;
+            color: currentColor;
+            line-height: 1;
+            transform: translateY(0);
+            transition: transform 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .nav-links a:hover span,
+        .nav-links a:focus-visible span,
+        .nav-links a:hover::after,
+        .nav-links a:focus-visible::after {
+            transform: translateY(-100%);
+        }
+        .menu-toggle {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+        }
 
-        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,44,84,0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; transition: opacity 0.3s ease; }
-        .mobile-menu.open { display: flex; opacity: 1; }
-        .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--light); text-decoration: none; transition: color 0.2s ease; }
-        .mobile-menu a:hover { color: var(--red-light); }
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(247, 241, 232, 0.96);
+            backdrop-filter: blur(12px);
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu nav {
+            display: grid;
+            gap: 1rem;
+            text-align: center;
+        }
+        .mobile-menu a {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 11vw, 4rem);
+            text-decoration: none;
+        }
 
-        /* HERO - FIXED, FULL PAGE */
         .hero {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            background: var(--hero-gradient);
-            z-index: 1; overflow: hidden;
+            min-height: 100svh;
+            position: relative;
+            display: grid;
+            align-items: center;
+            padding: 7.5rem 5vw 3rem;
+            overflow: hidden;
+            color: var(--paper);
+            isolation: isolate;
+            --hero-shift-x: 0px;
+            --hero-shift-y: 0px;
         }
-        .hero::before {
+        .hero-media,
+        .hero-media img,
+        .hero-media::after {
+            position: absolute;
+            inset: 0;
+        }
+        .hero-media { z-index: -2; }
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 26%;
+            transform: translate3d(var(--hero-shift-x), var(--hero-shift-y), 0) scale(1.08);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+        }
+        .hero-media::after {
             content: '';
-            position: absolute; inset: 0;
-            background-image: radial-gradient(circle, rgba(253,246,246,0.08) 1.2px, transparent 1.2px);
-            background-size: 14px 14px;
-            pointer-events: none;
+            z-index: 1;
+            background:
+                linear-gradient(180deg, rgba(31, 33, 29, 0.22) 0%, rgba(31, 33, 29, 0.36) 46%, rgba(31, 33, 29, 0.72) 100%),
+                linear-gradient(90deg, rgba(31, 33, 29, 0.52) 0%, rgba(31, 33, 29, 0.1) 60%);
+        }
+        .hero-inner {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            display: grid;
+            place-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .hero-kicker,
+        .eyebrow {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            max-width: 900px;
+            font-size: clamp(4rem, 8vw, 7.8rem);
+            letter-spacing: 0;
+        }
+        .hero-bottom {
+            display: grid;
+            place-items: center;
+            gap: 1.4rem;
+        }
+        .hero-copy {
+            max-width: 680px;
+            font-size: clamp(1rem, 1.4vw, 1.18rem);
+            color: rgba(255, 250, 242, 0.82);
+        }
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: clamp(1.6rem, 5vh, 3.8rem);
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0.85rem 1.25rem;
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            background: var(--ink);
+            color: var(--paper);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        .button:hover,
+        .button:focus-visible { transform: translateY(-2px); }
+        .button.light {
+            border-color: rgba(255, 250, 242, 0.8);
+            background: var(--paper);
+            color: var(--ink);
+        }
+        .button.ghost {
+            background: transparent;
+            color: inherit;
+            border-color: rgba(255, 250, 242, 0.55);
+        }
+        main {
+            position: relative;
+            background: var(--cream);
+        }
+        section {
+            scroll-margin-top: 110px;
+        }
+        .section {
+            padding: clamp(5rem, 9vw, 8.5rem) 5vw;
+        }
+        .section.alt { background: var(--paper); }
+        .section.dark {
+            background: #23251f;
+            color: var(--paper);
+        }
+        .section.dark p,
+        .section.dark .section-copy,
+        .section.dark .meta { color: rgba(255, 250, 242, 0.72); }
+        .section-shell {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+        }
+        .section-intro {
+            display: grid;
+            grid-template-columns: minmax(220px, 0.78fr) minmax(280px, 1fr);
+            gap: clamp(1.6rem, 5vw, 5rem);
+            align-items: end;
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+        }
+        .section-title {
+            font-size: clamp(3rem, 7vw, 7rem);
+            letter-spacing: 0;
+        }
+        .section-copy {
+            max-width: 610px;
+            font-size: 1rem;
+            color: var(--soft-ink);
+        }
+        .rule {
+            width: 100%;
+            height: 1px;
+            background: var(--line);
+            margin: 1.35rem 0;
         }
 
-        .hero-content { max-width: 1000px; width: 100%; padding: 0 5%; text-align: center; z-index: 5; position: relative; }
-
-        .hero-text h1 { font-family: 'Cormorant Garamond', serif; font-size: 6.5rem; font-weight: 300; color: var(--light); line-height: 1.05; margin-bottom: 0; opacity: 0; animation: slideUp 0.8s ease forwards; animation-delay: 0.3s; }
-        .name-highlight { display: inline; }
-        .name-deniz { color: var(--light); }
-
-        .hero-line { width: 60px; height: 1px; background: var(--red); margin: 1.8rem auto; opacity: 0; animation: slideUp 0.6s ease forwards; animation-delay: 0.5s; }
-
-        .hero-text .subtitle { font-size: 1.4rem; color: rgba(253,246,246,0.8); font-weight: 300; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2rem; opacity: 0; animation: slideUp 0.8s ease forwards; animation-delay: 0.6s; }
-        .hero-text p { color: rgba(253,246,246,0.6); font-size: 1.05rem; max-width: 550px; margin: 0 auto 2.5rem; opacity: 0; animation: slideUp 0.8s ease forwards; animation-delay: 0.8s; }
-        .hero-buttons { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: slideUp 0.8s ease forwards; animation-delay: 1s; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { to { opacity: 0.8; } }
-
-        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.2rem; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.5px; text-decoration: none; border-radius: 50px; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); cursor: pointer; border: none; }
-        .btn-primary { background: linear-gradient(180deg, #E0334A 0%, #C5001A 100%); color: var(--light); box-shadow: 0 4px 20px rgba(197,0,26,0.3); }
-        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(197,0,26,0.45); }
-        .btn-outline { background: transparent; color: var(--light); border: 2px solid rgba(253,246,246,0.35); }
-        .btn-outline:hover { background: var(--light); color: var(--navy); border-color: var(--light); }
-
-        .scroll-indicator { position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.8rem; z-index: 10; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 1.8s; }
-        .scroll-indicator span { color: var(--light); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; }
-        .scroll-mouse { width: 24px; height: 38px; border: 2px solid rgba(253,246,246,0.4); border-radius: 14px; position: relative; animation: bounce 2s ease-in-out infinite; }
-        .scroll-mouse::after { content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 4px; height: 8px; background: var(--light); border-radius: 3px; animation: scrollWheel 2s ease-in-out infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
-        @keyframes scrollWheel { 0%, 100% { opacity: 1; top: 6px; } 50% { opacity: 0.3; top: 16px; } }
-
-        .hero-spacer { height: 100vh; pointer-events: none; }
-
-        /* MAIN CONTENT */
-        .main-content { position: relative; z-index: 10; background: var(--light); border-radius: 50px 50px 0 0; margin-top: -60px; box-shadow: 0 -20px 60px rgba(0,0,0,0.1); }
-
-        .reveal-section { opacity: 0; transform: translateY(60px); transition: all 0.9s cubic-bezier(0.4,0,0.2,1); }
-        .reveal-section.revealed { opacity: 1; transform: translateY(0); }
-        .reveal-item { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.4,0,0.2,1); }
-        .reveal-section.revealed .reveal-item { opacity: 1; transform: translateY(0); }
-        .reveal-section.revealed .reveal-item:nth-child(1) { transition-delay: 0.1s; }
-        .reveal-section.revealed .reveal-item:nth-child(2) { transition-delay: 0.2s; }
-        .reveal-section.revealed .reveal-item:nth-child(3) { transition-delay: 0.3s; }
-        .reveal-section.revealed .reveal-item:nth-child(4) { transition-delay: 0.4s; }
-        .reveal-section.revealed .reveal-item:nth-child(5) { transition-delay: 0.5s; }
-        .reveal-section.revealed .reveal-item:nth-child(6) { transition-delay: 0.6s; }
-        .reveal-section.revealed .reveal-item:nth-child(7) { transition-delay: 0.7s; }
-        .reveal-section.revealed .reveal-item:nth-child(8) { transition-delay: 0.8s; }
-
-        section { padding: 7rem 5%; position: relative; overflow: hidden; }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-header h2 { font-size: 3.2rem; font-weight: 400; color: var(--navy); margin-bottom: 1rem; }
-        .section-header h2 .wave-accent { color: var(--red); }
-        .section-divider { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 1.5rem 0; }
-        .section-divider::before, .section-divider::after { content: ''; width: 50px; height: 2px; background: var(--accent-gradient); border-radius: 3px; }
-        .divider-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
-        .section-header p { color: var(--black-soft); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
-
-        /* ABOUT - red bg, black text */
-        .about { background: var(--red); padding-top: 5rem; }
-        .about .section-header h2 { color: var(--light); }
-        .about .section-header h2 .wave-accent { color: var(--light); }
-        .about .section-header p { color: rgba(253,246,246,0.75); }
-        .about .divider-dot { background: var(--light); }
-        .about .section-divider::before, .about .section-divider::after { background: rgba(253,246,246,0.4); }
-        .about-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
-        .about-image { position: relative; }
-        .about-image::before { content: ''; position: absolute; top: 20px; left: -20px; width: 100%; height: 100%; background: var(--navy); border-radius: 25px; z-index: -1; transition: all 0.4s ease; }
-        .about-image:hover::before { top: 12px; left: -12px; }
-        .about-image img { width: 100%; height: 500px; object-fit: cover; object-position: center 20%; border-radius: 25px; box-shadow: 0 25px 60px rgba(0,0,0,0.2); }
-        .about-text h3 { font-size: 2.2rem; font-weight: 400; color: var(--light); margin-bottom: 1.5rem; line-height: 1.3; }
-        .about-text h3 span { color: var(--light); }
-        .about-text p { color: rgba(253,246,246,0.8); margin-bottom: 1.3rem; font-size: 1rem; }
-        .about .btn-primary { background: var(--navy); color: var(--light); box-shadow: 0 4px 20px rgba(0,44,84,0.3); }
-        .about .btn-primary:hover { box-shadow: 0 8px 30px rgba(0,44,84,0.45); }
-
-        /* PORTFOLIO - light bg, black overlay */
-        .portfolio { background: var(--light); }
-        .portfolio-filter { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 3rem; flex-wrap: wrap; }
-        .filter-btn { padding: 0.7rem 1.6rem; border: none; background: transparent; color: var(--black-soft); font-family: 'Inter', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; border-radius: 30px; }
-        .filter-btn:hover { color: var(--navy); }
-        .filter-btn.active { background: var(--navy); color: var(--light); }
-        .portfolio-grid { max-width: 1400px; margin: 0 auto; columns: 3; column-gap: 1rem; }
-        .portfolio-item { position: relative; overflow: hidden; border-radius: 16px; cursor: pointer; box-shadow: 0 6px 24px rgba(0,0,0,0.08); break-inside: avoid; margin-bottom: 1rem; transition: opacity 0.4s ease, transform 0.4s ease; }
-        .portfolio-item.hidden { display: none; }
-        .portfolio-item img { width: 100%; display: block; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
-        .portfolio-item:hover img { transform: scale(1.05); }
-        .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.4s ease; }
-        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-        .portfolio-overlay h4 { color: var(--light); font-size: 1.25rem; margin-bottom: 0.3rem; transform: translateY(20px); transition: transform 0.4s ease; }
-        .portfolio-item:hover .portfolio-overlay h4 { transform: translateY(0); }
-        .portfolio-overlay span { color: var(--red-light); font-size: 0.85rem; transform: translateY(20px); transition: transform 0.4s ease 0.1s; }
-        .portfolio-item:hover .portfolio-overlay span { transform: translateY(0); }
-
-        /* SERVICES - navy bg, light text */
-        .services { background: var(--navy); position: relative; }
-        .services::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(253,246,246,0.05) 1.2px, transparent 1.2px); background-size: 14px 14px; pointer-events: none; }
-        .services .section-header h2 { color: var(--light); }
-        .services .section-header h2 .wave-accent { color: var(--red-light); }
-        .services .section-header p { color: rgba(253,246,246,0.7); }
-        .services .divider-dot { background: var(--red); }
-        .services .section-divider::before, .services .section-divider::after { background: var(--red); opacity: 0.5; }
-        .services-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; position: relative; z-index: 1; }
-        .service-card { background: rgba(253,246,246,0.04); backdrop-filter: blur(10px); padding: 2.5rem 2rem; border-radius: 24px; border: 1px solid rgba(253,246,246,0.08); transition: all 0.4s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; }
-        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-        .service-card:hover::before { transform: scaleX(1); }
-        .service-card:hover { transform: translateY(-10px); background: rgba(253,246,246,0.07); border-color: rgba(253,246,246,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-        .service-icon { width: 65px; height: 65px; background: rgba(253,246,246,0.08); border: 1px solid rgba(253,246,246,0.15); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
-        .service-icon svg { width: 28px; height: 28px; stroke: var(--red-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-        .service-card h4 { color: var(--light); font-size: 1.3rem; margin-bottom: 1rem; }
-        .service-card p { color: rgba(253,246,246,0.65); font-size: 0.95rem; line-height: 1.7; }
-
-        /* EXPERIENCE - light bg */
-        .experience { background: var(--light); }
-        .experience-timeline { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-        .experience-timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); top: 0; width: 3px; height: 100%; background: var(--navy); border-radius: 3px; }
-        .experience-item { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; position: relative; }
-        .experience-item::before { content: ''; position: absolute; left: 50%; top: 25px; width: 18px; height: 18px; background: var(--red); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 5px var(--light), 0 5px 20px rgba(197,0,26,0.2); z-index: 2; }
-        .exp-date { text-align: right; padding-right: 2rem; }
-        .exp-date-label { display: inline-block; padding: 0.5rem 1rem; background: var(--navy); color: var(--light); font-size: 0.8rem; border-radius: 20px; font-weight: 500; }
-        .exp-content { padding-left: 2rem; }
-        .exp-content h4 { font-size: 1.4rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
-        .exp-content h5 { color: var(--red); font-weight: 500; font-size: 1rem; margin-bottom: 0.8rem; }
-        .exp-content p { color: var(--black-soft); font-size: 0.95rem; }
-
-        /* SKILLS - red bg, black text */
-        .skills { background: var(--red); }
-        .skills .section-header h2 { color: var(--light); }
-        .skills .section-header h2 .wave-accent { color: var(--light); }
-        .skills .section-header p { color: rgba(253,246,246,0.75); }
-        .skills .divider-dot { background: var(--light); }
-        .skills .section-divider::before, .skills .section-divider::after { background: rgba(253,246,246,0.4); }
-        .skills-content { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
-        .skill-tag { padding: 0.9rem 1.8rem; background: rgba(253,246,246,0.15); color: var(--light); font-size: 0.9rem; font-weight: 500; border-radius: 50px; border: none; box-shadow: none; cursor: default; }
-
-        /* CONTACT - navy bg, light text */
-        .contact { background: var(--navy); text-align: center; position: relative; overflow: hidden; }
-        .contact::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(253,246,246,0.04) 1.2px, transparent 1.2px); background-size: 14px 14px; pointer-events: none; }
-        .contact .section-header h2 { color: var(--light); }
-        .contact .section-header h2 .wave-accent { color: var(--red-light); }
-        .contact .section-header p { color: rgba(253,246,246,0.7); }
-        .contact .section-divider::before, .contact .section-divider::after { background: var(--red); opacity: 0.5; }
-        .contact .divider-dot { background: var(--red); }
-        .contact-content { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
-        .contact-email { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--light); text-decoration: none; display: inline-block; margin-bottom: 2rem; position: relative; transition: color 0.3s ease; }
-        .contact-email::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--red); transform: scaleX(0); transition: transform 0.4s ease; }
-        .contact-email:hover::after { transform: scaleX(1); }
-        .contact-email:hover { color: var(--red-light); }
-        .social-links { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
-        .social-link { width: 55px; height: 55px; border-radius: 50%; background: rgba(253,246,246,0.08); border: 1px solid rgba(253,246,246,0.2); display: flex; align-items: center; justify-content: center; color: var(--light); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; }
-        .social-link:hover { background: var(--red); border-color: transparent; color: var(--light); transform: translateY(-5px) scale(1.1); box-shadow: 0 10px 30px rgba(197,0,26,0.3); }
-
-        footer { background: var(--navy); padding: 2.5rem 5%; text-align: center; }
-        footer p { color: var(--light); font-size: 0.9rem; opacity: 0.6; }
-
-        /* LIGHTBOX */
-        .lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .lightbox.active { opacity: 1; visibility: visible; }
-        .lightbox-window { position: relative; max-width: 85vw; max-height: 88vh; background: #f0f0f0; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.5); transform: scale(0.92); transition: transform 0.3s ease; display: flex; flex-direction: column; }
-        .lightbox.active .lightbox-window { transform: scale(1); }
-        .lightbox-header { height: 36px; min-height: 36px; background: #e0e0e0; display: flex; align-items: center; padding: 0 12px; gap: 8px; border-bottom: 1px solid #d0d0d0; }
-        .lb-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .lb-dot-close { background: #ff5f57; cursor: pointer; transition: filter 0.15s ease; }
-        .lb-dot-close:hover { filter: brightness(0.85); }
-        .lb-dot-min { background: #febc2e; }
-        .lb-dot-max { background: #28c840; }
-        .lightbox-body { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; overflow: hidden; background: #f6f6f6; }
-        .lightbox-body img { display: block; max-width: 100%; max-height: calc(88vh - 76px); object-fit: contain; border-radius: 4px; }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .hero-text h1 { font-size: 4.5rem; }
-            .portfolio-grid { columns: 2; }
-            .services-grid { grid-template-columns: 1fr; max-width: 450px; }
-            .experience-timeline::before { left: 0; }
-            .experience-item { grid-template-columns: 1fr; gap: 0.8rem; padding-left: 2.5rem; }
-            .experience-item::before { left: 0; top: 8px; transform: translateX(-50%); }
-            .exp-date { text-align: left; padding-right: 0; }
-            .exp-content { padding-left: 0; }
+        .welcome-grid {
+            display: grid;
+            grid-template-columns: minmax(290px, 0.92fr) minmax(320px, 1.08fr);
+            gap: clamp(2rem, 6vw, 5.5rem);
+            align-items: center;
         }
-        @media (max-width: 768px) {
+        .welcome-card {
+            padding: clamp(1.5rem, 4vw, 3.3rem);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: rgba(255, 250, 242, 0.64);
+        }
+        .welcome-card h2 {
+            margin: 0.5rem 0 1.5rem;
+            font-size: clamp(2.9rem, 6vw, 5.8rem);
+        }
+        .welcome-card p + p { margin-top: 1rem; }
+        .signature {
+            margin-top: 2rem;
+            font-family: var(--serif);
+            font-size: 2.2rem;
+            color: var(--ink);
+        }
+        .portrait-frame {
+            position: relative;
+            border-radius: 34px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .portrait-frame img {
+            width: 100%;
+            height: min(76vh, 720px);
+            min-height: 480px;
+            object-fit: cover;
+            object-position: center 18%;
+        }
+        .image-caption {
+            position: absolute;
+            left: 1rem;
+            right: 1rem;
+            bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(255, 250, 242, 0.32);
+            border-radius: 999px;
+            background: rgba(31, 33, 29, 0.34);
+            color: var(--paper);
+            backdrop-filter: blur(16px);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .gallery-filter {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .filter-btn {
+            min-height: 40px;
+            padding: 0.68rem 1rem;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            font: 600 0.74rem var(--sans);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        .filter-btn.active,
+        .filter-btn:hover,
+        .filter-btn:focus-visible {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-flow: dense;
+            gap: 1rem;
+        }
+        .gallery-item {
+            position: relative;
+            min-height: 260px;
+            grid-column: span 4;
+            padding: 0;
+            border: 0;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--shell);
+            color: inherit;
+            font: inherit;
+            text-align: left;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .gallery-item.wide { grid-column: span 6; }
+        .gallery-item.tall { grid-row: span 2; min-height: 540px; }
+        .gallery-item.hidden {
+            display: none;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .gallery-item:hover img,
+        .gallery-item:focus-within img { transform: scale(1.055); }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 0.2rem;
+            padding: 1.25rem;
+            background: linear-gradient(180deg, transparent 40%, rgba(31, 33, 29, 0.68) 100%);
+            color: var(--paper);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .gallery-item:hover .gallery-overlay,
+        .gallery-item:focus-within .gallery-overlay { opacity: 1; }
+        .gallery-overlay h3 {
+            font-size: 1.55rem;
+            line-height: 1.05;
+        }
+        .gallery-overlay span {
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 250, 242, 0.78);
+        }
+
+        .project-controls {
+            display: flex;
+            gap: 0.7rem;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        .round-btn {
+            width: 46px;
+            height: 46px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+        .round-btn:hover,
+        .round-btn:focus-visible {
+            background: var(--ink);
+            color: var(--paper);
+        }
+        .project-rail {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(310px, 410px);
+            gap: 1.2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 0.25rem 0 1.4rem;
+            scrollbar-width: thin;
+        }
+        .project-card {
+            scroll-snap-align: start;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: rgba(255, 250, 242, 0.62);
+            overflow: hidden;
+        }
+        .project-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1.05;
+            object-fit: cover;
+        }
+        .project-body {
+            padding: 1.25rem;
+        }
+        .project-meta,
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            color: var(--muted);
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .project-card h3 {
+            margin: 1.2rem 0 0.8rem;
+            font-size: 2.2rem;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .expertise-card {
+            min-height: 310px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 250, 242, 0.16);
+            border-radius: 26px;
+            background:
+                linear-gradient(180deg, rgba(255, 250, 242, 0.04), rgba(255, 250, 242, 0.1)),
+                #2b2d26;
+            overflow: hidden;
+            position: relative;
+        }
+        .expertise-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 1.1rem;
+            right: 1.2rem;
+            color: rgba(255, 250, 242, 0.42);
+            font-family: var(--serif);
+            font-size: 3rem;
+            line-height: 1;
+        }
+        .expertise-card h3 {
+            font-size: 2rem;
+            color: var(--paper);
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .feature-card {
+            min-height: 440px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            border-radius: 30px;
+            overflow: hidden;
+            color: var(--paper);
+            background: var(--ink);
+        }
+        .feature-card.large { grid-row: span 2; min-height: 680px; }
+        .feature-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.74;
+            transition: transform 0.75s ease;
+        }
+        .feature-card:hover img { transform: scale(1.04); }
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 22%, rgba(31, 33, 29, 0.78) 100%);
+        }
+        .feature-copy {
+            position: relative;
+            z-index: 2;
+            padding: clamp(1.25rem, 4vw, 2rem);
+        }
+        .feature-copy h3 {
+            max-width: 520px;
+            margin: 0.8rem 0;
+            font-size: clamp(2.2rem, 4vw, 4.2rem);
+        }
+        .feature-copy p { color: rgba(255, 250, 242, 0.8); }
+
+        .quote-section {
+            text-align: center;
+            padding: clamp(5rem, 10vw, 9rem) 5vw;
+        }
+        .quote-section blockquote {
+            width: min(980px, 100%);
+            margin: 0 auto;
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 6vw, 6.6rem);
+            line-height: 1.02;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 2rem;
+            color: var(--muted);
+            font-style: normal;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .writing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .writing-card {
+            display: flex;
+            min-height: 320px;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.4rem;
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            background: rgba(255, 250, 242, 0.6);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .writing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .writing-card h3 {
+            margin-top: 1.4rem;
+            font-size: 2.1rem;
+            line-height: 1;
+        }
+        .writing-card p { margin-top: 1rem; }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: minmax(240px, 0.7fr) minmax(300px, 1fr);
+            gap: clamp(1.6rem, 5vw, 5rem);
+        }
+        .faq-list {
+            border-top: 1px solid var(--line);
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--line);
+        }
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border: 0;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            text-align: left;
+            font: 500 1.35rem var(--serif);
+        }
+        .faq-question span:last-child {
+            font-family: var(--sans);
+            font-size: 1.25rem;
+            transition: transform 0.25s ease;
+        }
+        .faq-item.open .faq-question span:last-child {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-answer p {
+            padding: 0 0 1.25rem;
+        }
+
+        .contact-cta {
+            position: relative;
+            overflow: hidden;
+            min-height: 78vh;
+            display: grid;
+            align-items: center;
+            color: var(--paper);
+            background: var(--ink);
+        }
+        .contact-cta img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+        }
+        .contact-cta::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(31, 33, 29, 0.78), rgba(31, 33, 29, 0.34));
+        }
+        .contact-content {
+            position: relative;
+            z-index: 2;
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            padding: clamp(5rem, 9vw, 8rem) 5vw;
+        }
+        .contact-content h2 {
+            max-width: 920px;
+            font-size: clamp(3.8rem, 9vw, 9rem);
+        }
+        .contact-content p {
+            max-width: 560px;
+            margin: 1.4rem 0 2rem;
+            color: rgba(255, 250, 242, 0.78);
+        }
+        .contact-lines {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .contact-lines a {
+            color: rgba(255, 250, 242, 0.88);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 250, 242, 0.35);
+        }
+
+        .footer {
+            padding: 3.5rem 5vw 2rem;
+            background: var(--paper);
+            border-top: 1px solid var(--line);
+        }
+        .footer-grid {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(240px, 1.4fr) repeat(3, minmax(120px, 0.7fr));
+            gap: 2rem;
+        }
+        .footer-logo {
+            font-family: var(--serif);
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .footer h3 {
+            margin-bottom: 1rem;
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .footer a {
+            display: block;
+            width: fit-content;
+            margin-bottom: 0.45rem;
+            color: var(--soft-ink);
+            text-decoration: none;
+        }
+        .footer a:hover,
+        .footer a:focus-visible { color: var(--ink); }
+        .copyright {
+            width: min(1180px, 100%);
+            margin: 2.6rem auto 0;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: grid;
+            place-items: center;
+            padding: 1.2rem;
+            background: rgba(31, 33, 29, 0.82);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox img {
+            max-width: min(92vw, 1200px);
+            max-height: 86vh;
+            object-fit: contain;
+            border-radius: 22px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+        }
+        .lightbox button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 250, 242, 0.38);
+            border-radius: 50%;
+            background: rgba(255, 250, 242, 0.12);
+            color: var(--paper);
+            cursor: pointer;
+            font-size: 1.6rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
+
+        @media (max-width: 980px) {
+            .site-nav {
+                justify-content: flex-end;
+            }
             .nav-links { display: none; }
-            .nav-toggle { display: flex; }
-            .hero-text h1 { font-size: 3.2rem; }
-            .hero-text .subtitle { font-size: 1.1rem; letter-spacing: 2px; }
-            .section-header h2 { font-size: 2.3rem; }
-            .about-content { grid-template-columns: 1fr; gap: 2.5rem; }
-            .portfolio-grid { columns: 2; }
-            .portfolio-filter { gap: 0.5rem; }
-            .filter-btn { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
-            .contact-email { font-size: 1.5rem; }
-            .social-link { width: 48px; height: 48px; font-size: 0.75rem; }
+            .menu-toggle { display: inline-flex; }
+            .hero-bottom,
+            .section-intro,
+            .welcome-grid,
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-actions { justify-content: center; }
+            .gallery-grid { grid-template-columns: repeat(6, 1fr); }
+            .gallery-item,
+            .gallery-item.wide { grid-column: span 3; }
+            .expertise-grid,
+            .writing-grid,
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
-        @media (max-width: 480px) {
-            .hero-text h1 { font-size: 2.4rem; }
-            .hero-text .subtitle { font-size: 0.95rem; letter-spacing: 1.5px; }
-            .portfolio-grid { columns: 1; }
-            section { padding: 5rem 4%; }
-            .section-header h2 { font-size: 2rem; }
-            .reveal-section { opacity: 1 !important; transform: none !important; }
-            .reveal-item { opacity: 1 !important; transform: none !important; }
+
+        @media (max-width: 680px) {
+            .site-nav {
+                top: 10px;
+                width: calc(100% - 20px);
+                padding: 0.75rem 0.95rem;
+            }
+            .hero {
+                padding: 6rem 1.1rem 2rem;
+            }
+            .hero h1 {
+                font-size: clamp(3.6rem, 16vw, 5.4rem);
+            }
+            .project-controls { display: none; }
+            .section { padding-left: 1rem; padding-right: 1rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item,
+            .gallery-item.wide,
+            .gallery-item.tall {
+                grid-column: auto;
+                min-height: 380px;
+            }
+            .project-rail {
+                grid-auto-columns: 86%;
+            }
+            .expertise-grid,
+            .feature-grid,
+            .writing-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .feature-card,
+            .feature-card.large {
+                min-height: 500px;
+                grid-row: auto;
+            }
+            .portrait-frame img {
+                min-height: 420px;
+            }
+            .image-caption {
+                position: static;
+                border-radius: 0;
+                background: var(--ink);
+            }
         }
     </style>
 </head>
 <body>
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loader-mark">DM</div>
+    </div>
 
-    <div class="loader" id="loader"><div class="loader-inner"><svg class="loader-circle" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54"/></svg><span class="loader-monogram">DM</span></div></div>
-
-    <nav id="navbar">
-        <a href="#" class="logo">Deniz Mokhtari</a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
+    <header class="site-nav" id="siteNav">
+        <ul class="nav-links" aria-label="Primary navigation">
+            <li><a href="#home" data-label="Home"><span>Home</span></a></li>
+            <li><a href="#about" data-label="About"><span>About</span></a></li>
+            <li><a href="#projects" data-label="Projects"><span>Projects</span></a></li>
+            <li><a href="#research" data-label="Research"><span>Research</span></a></li>
+            <li><a href="#contact" data-label="Contact"><span>Contact</span></a></li>
         </ul>
-        <div class="nav-toggle"><span></span><span></span><span></span></div>
-    </nav>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </header>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#about">About</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#services">Services</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+        <nav aria-label="Mobile navigation">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#research">Research</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1><span class="name-highlight"><span class="name-deniz">Deniz</span></span> Mokhtari</h1>
-                <div class="hero-line"></div>
-                <p class="subtitle">Marketing & Visual Design</p>
-                <p>Marketing and visual design specialist creating print and digital brand assets, content for social media and campaigns, and visual communication aligned with brand goals.</p>
-                <div class="hero-buttons">
-                    <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    <section class="hero" id="home">
+        <div class="hero-media" aria-hidden="true">
+            <img src="interior2.png" alt="" fetchpriority="high">
+        </div>
+        <div class="hero-inner">
+            <div>
+                <h1 class="reveal">Deniz Mokhtari</h1>
+            </div>
+            <div class="hero-bottom reveal">
+                <p class="hero-copy">Toronto-based marketing and visual design specialist, MA Fashion graduate, creating fashion illustrations, textile motifs, brand systems, spatial concepts, and research-led visual communication.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="button light">View Projects</a>
+                    <a href="#contact" class="button ghost">Collaborate</a>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator"><span>Scroll</span><div class="scroll-mouse"></div></div>
     </section>
 
-    <div class="hero-spacer"></div>
-
-    <div class="main-content">
-
-        <section id="about" class="about reveal-section">
-            <div class="section-header">
-                <h2>About <span class="wave-accent">Me</span></h2>
-                <div class="section-divider"><span class="divider-dot"></span></div>
-                <p>Where design expertise meets marketing strategy and visual storytelling</p>
-            </div>
-            <div class="about-content">
-                <div class="about-image reveal-item">
-                    <img src="about.jpg" alt="About Deniz">
-                </div>
-                <div class="about-text">
-                    <h3 class="reveal-item">Design Meets <span>Strategy</span></h3>
-                    <p class="reveal-item">Marketing and visual design specialist with experience creating print and digital brand assets, content for social media and campaigns, and visual communication aligned with brand goals.</p>
-                    <p class="reveal-item">I combine design expertise with marketing knowledge in branding, storytelling, and merchandising. My background in textile design supports strong collaboration between creative and business objectives.</p>
-                    <p class="reveal-item">Currently pursuing a Master of Arts in Fashion at Toronto Metropolitan University, researching marketing and branding strategies that explore emotional storytelling and brand communication.</p>
-                    <a href="#contact" class="btn btn-primary reveal-item">Let's Collaborate</a>
-                </div>
+    <main>
+        <section class="section alt reveal" id="about">
+            <div class="section-shell welcome-grid">
+                <article class="welcome-card">
+                    <p class="eyebrow">Welcome</p>
+                    <h2>Where design meets strategy.</h2>
+                    <p>Dear visitor, welcome to my portfolio - a curated space for fashion, textile, branding, illustration, and research work.</p>
+                    <p>I combine design expertise with marketing knowledge in branding, storytelling, and merchandising. My background in textile design supports strong collaboration between creative and business objectives.</p>
+                    <p>Currently pursuing a Master of Arts in Fashion at Toronto Metropolitan University, I research marketing and branding strategies that explore emotional storytelling and brand communication.</p>
+                    <div class="signature">Deniz</div>
+                </article>
+                <figure class="portrait-frame">
+                    <img src="about.jpg" alt="Portrait of Deniz Mokhtari">
+                    <figcaption class="image-caption">
+                        <span>Creative Direction</span>
+                        <span>Fashion / Branding / Research</span>
+                    </figcaption>
+                </figure>
             </div>
         </section>
 
-        <section id="portfolio" class="portfolio reveal-section">
-            <div class="section-header">
-                <h2>Selected <span class="wave-accent">Work</span></h2>
-                <div class="section-divider"><span class="divider-dot"></span></div>
-                <p>Fashion illustrations, character designs, motif patterns, space and brand design</p>
-            </div>
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="fashion">Fashion Design</button>
-                <button class="filter-btn" data-filter="character">Character Design</button>
-                <button class="filter-btn" data-filter="motif">Motif Design</button>
-                <button class="filter-btn" data-filter="space">Space Design</button>
-                <button class="filter-btn" data-filter="brand">Brand Design</button>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="IMG_2597.JPG" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="IMG_2599.JPG" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="3334.jpeg" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="IMG_2571.JPG" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="IMG_2572.JPG" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="IMG_2575.JPG" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="IMG_2576.JPG" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="fashion"><img src="IMG_2577.JPG" alt="Fashion Design"><div class="portfolio-overlay"><h4>Fashion Illustration</h4><span>Fashion Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="character"><img src="IMG_2564.JPG" alt="Character Design"><div class="portfolio-overlay"><h4>Character Design</h4><span>Character Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="character"><img src="IMG_2565.JPG" alt="Character Design"><div class="portfolio-overlay"><h4>Character Design</h4><span>Character Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="character"><img src="IMG_2566.JPG" alt="Character Design"><div class="portfolio-overlay"><h4>Character Design</h4><span>Character Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="character"><img src="IMG_2568.JPG" alt="Character Design"><div class="portfolio-overlay"><h4>Character Design</h4><span>Character Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="character"><img src="IMG_2567.JPG" alt="Character Design"><div class="portfolio-overlay"><h4>Character Design</h4><span>Character Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="character"><img src="IMG_2570.JPG" alt="Character Design"><div class="portfolio-overlay"><h4>Character Design</h4><span>Character Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="motif"><img src="photo_6012625606908427720_y.jpg" alt="Motif Design"><div class="portfolio-overlay"><h4>Motif Design</h4><span>Motif Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="motif"><img src="photo_6012625606908427736_y.jpg" alt="Motif Design"><div class="portfolio-overlay"><h4>Motif Design</h4><span>Motif Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="motif"><img src="photo_6012625606908427738_y.jpg" alt="Motif Design"><div class="portfolio-overlay"><h4>Motif Design</h4><span>Motif Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="motif"><img src="photo_6012625606908427740_y.jpg" alt="Motif Design"><div class="portfolio-overlay"><h4>Motif Design</h4><span>Motif Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="motif"><img src="photo_6012625606908427742_y.jpg" alt="Motif Design"><div class="portfolio-overlay"><h4>Motif Design</h4><span>Motif Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="motif"><img src="photo_6012625606908427744_y.jpg" alt="Motif Design"><div class="portfolio-overlay"><h4>Motif Design</h4><span>Motif Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="motif"><img src="photo_6012625606908427753_y.jpg" alt="Motif Design"><div class="portfolio-overlay"><h4>Motif Design</h4><span>Motif Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="space"><img src="IMG_2939.JPG" alt="Space Design"><div class="portfolio-overlay"><h4>Fish Do Not Remain Inside the Bowl</h4><span>Space Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="space"><img src="IMG_2936.JPG" alt="Space Design"><div class="portfolio-overlay"><h4>Fish Do Not Remain Inside the Bowl</h4><span>Space Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="space"><img src="IMG_2937.JPG" alt="Space Design"><div class="portfolio-overlay"><h4>Fish Do Not Remain Inside the Bowl</h4><span>Space Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="space"><img src="IMG_2934.PNG" alt="Space Design"><div class="portfolio-overlay"><h4>Fish Do Not Remain Inside the Bowl</h4><span>Space Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="space"><img src="IMG_3647.JPG" alt="Space Design"><div class="portfolio-overlay"><h4>Dena Clinic Interior</h4><span>Space Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="space"><img src="interior1.png" alt="Space Design"><div class="portfolio-overlay"><span>Space Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="brand"><img src="IMG_3637.JPG" alt="Brand Design"><div class="portfolio-overlay"><h4>Dena Clinic Rebrand</h4><span>Brand Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="brand"><img src="IMG_3644.JPG" alt="Brand Design"><div class="portfolio-overlay"><h4>Dena Clinic Rebrand</h4><span>Brand Design</span></div></div>
-                <div class="portfolio-item reveal-item" data-category="brand"><img src="IMG_3646.JPG" alt="Brand Design"><div class="portfolio-overlay"><h4>Dena Clinic Rebrand</h4><span>Brand Design</span></div></div>
-            </div>
-        </section>
-
-        <section id="services" class="services reveal-section">
-            <div class="section-header">
-                <h2>What I <span class="wave-accent">Do</span></h2>
-                <div class="section-divider"><span class="divider-dot"></span></div>
-                <p>From fashion illustration to brand strategy and visual communication</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card reveal-item">
-                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M6 2l3 5H3l3-5z"/><path d="M18 2l3 5h-6l3-5z"/><path d="M3 7h18v2H3z"/><path d="M5 9l1 13h12l1-13"/><path d="M9 9v8M12 9v8M15 9v8"/></svg></div>
-                    <h4>Fashion Illustration & Design</h4>
-                    <p>Bringing garment concepts to life through expressive digital sketches, lookbook visuals, and textile motif patterns for fashion and lifestyle brands.</p>
-                </div>
-                <div class="service-card reveal-item">
-                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-2 0-3.5 1-4 2.5C7 4 5.5 4.5 5 6c-1 0-2 1-2 2.5S4 11 5 11h1l2 8h8l2-8h1c1 0 2-1 2-2.5S19 6 19 6c-.5-1.5-2-2-3-1.5C15.5 4 14 3 12 3z"/><circle cx="10" cy="8" r="1"/><circle cx="14" cy="8" r="1"/><path d="M10 11c0 1 1 2 2 2s2-1 2-2"/></svg></div>
-                    <h4>Character & Visual Storytelling</h4>
-                    <p>Creating original 2D characters and narrative illustrations, collaborating with writers and creative directors to develop visual worlds.</p>
-                </div>
-                <div class="service-card reveal-item">
-                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
-                    <h4>Branding & Communication</h4>
-                    <p>Building cohesive brand identities and marketing visuals — from logo design and social media assets to campaign imagery and exhibition materials.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="experience reveal-section">
-            <div class="section-header">
-                <h2>My <span class="wave-accent">Journey</span></h2>
-                <div class="section-divider"><span class="divider-dot"></span></div>
-                <p>Building a career at the crossroads of fashion, design, and brand communication</p>
-            </div>
-            <div class="experience-timeline">
-                <div class="experience-item reveal-item">
-                    <div class="exp-date"><span class="exp-date-label">Nov 2021 — Present</span></div>
-                    <div class="exp-content">
-                        <h4>Digital Illustrator</h4>
-                        <h5>Freelance</h5>
-                        <p>Creating fashion illustrations for designers and apparel brands. Designing 2D characters and visual storytelling assets, collaborating with writers to bring narrative concepts to life.</p>
+        <section class="section" id="portfolio">
+            <div class="section-shell">
+                <div class="section-intro reveal">
+                    <div>
+                        <p class="eyebrow">Photo Gallery</p>
+                        <h2 class="section-title">Selected work, captured.</h2>
                     </div>
+                    <p class="section-copy">A visual archive of fashion illustration, character design, motif and textile explorations, spatial design, and brand identity work.</p>
                 </div>
-                <div class="experience-item reveal-item">
-                    <div class="exp-date"><span class="exp-date-label">May — Oct 2023</span></div>
-                    <div class="exp-content">
-                        <h4>Art Project Assistant</h4>
-                        <h5>Opal Center, Tehran</h5>
-                        <p>Created visual content and promotional materials across digital and print. Supported branding and exhibition preparation, collaborating with creative teams on tight deadlines.</p>
-                    </div>
+
+                <div class="gallery-filter reveal" aria-label="Portfolio filters">
+                    <button class="filter-btn active" type="button" data-filter="all">All</button>
+                    <button class="filter-btn" type="button" data-filter="fashion">Fashion</button>
+                    <button class="filter-btn" type="button" data-filter="character">Character</button>
+                    <button class="filter-btn" type="button" data-filter="motif">Motif</button>
+                    <button class="filter-btn" type="button" data-filter="space">Space</button>
+                    <button class="filter-btn" type="button" data-filter="brand">Brand</button>
                 </div>
-                <div class="experience-item reveal-item">
-                    <div class="exp-date"><span class="exp-date-label">Oct 2022 — May 2023</span></div>
-                    <div class="exp-content">
-                        <h4>Branding & Visual Designer</h4>
-                        <h5>Dena Clinic, Tehran</h5>
-                        <p>Led a full rebrand — creating the new visual identity including logo, brand patterns, staff garments, and social media assets for a cohesive cross-platform presence.</p>
-                    </div>
-                </div>
-                <div class="experience-item reveal-item">
-                    <div class="exp-date"><span class="exp-date-label">May — Oct 2022</span></div>
-                    <div class="exp-content">
-                        <h4>Graphic Design Intern</h4>
-                        <h5>Sib-e Sabz Photography Studio, Karaj</h5>
-                        <p>Designed print and digital materials including catalogues and photo albums using Adobe InDesign and Photoshop.</p>
-                    </div>
+
+                <div class="gallery-grid reveal">
+                    <button class="gallery-item tall" type="button" data-category="fashion" data-full="IMG_2597.JPG"><img src="IMG_2597.JPG" alt="Fashion illustration portfolio work" loading="lazy"><span class="gallery-overlay"><h3>Fashion Illustration</h3><span>Fashion Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="fashion" data-full="IMG_2599.JPG"><img src="IMG_2599.JPG" alt="Fashion illustration in warm tones" loading="lazy"><span class="gallery-overlay"><h3>Fashion Illustration</h3><span>Fashion Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="fashion" data-full="3334.jpeg"><img src="3334.jpeg" alt="Fashion illustration figure study" loading="lazy"><span class="gallery-overlay"><h3>Fashion Illustration</h3><span>Fashion Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="fashion" data-full="IMG_2571.JPG"><img src="IMG_2571.JPG" alt="Fashion design sketch" loading="lazy"><span class="gallery-overlay"><h3>Garment Study</h3><span>Fashion Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="fashion" data-full="IMG_2572.JPG"><img src="IMG_2572.JPG" alt="Fashion illustration collection piece" loading="lazy"><span class="gallery-overlay"><h3>Collection Study</h3><span>Fashion Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="fashion" data-full="IMG_2575.JPG"><img src="IMG_2575.JPG" alt="Fashion design visual" loading="lazy"><span class="gallery-overlay"><h3>Fashion Illustration</h3><span>Fashion Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="fashion" data-full="IMG_2576.JPG"><img src="IMG_2576.JPG" alt="Fashion figure artwork" loading="lazy"><span class="gallery-overlay"><h3>Fashion Illustration</h3><span>Fashion Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="fashion" data-full="IMG_2577.JPG"><img src="IMG_2577.JPG" alt="Fashion illustration artwork" loading="lazy"><span class="gallery-overlay"><h3>Fashion Illustration</h3><span>Fashion Design</span></span></button>
+
+                    <button class="gallery-item tall" type="button" data-category="character" data-full="IMG_2564.JPG"><img src="IMG_2564.JPG" alt="Character design artwork" loading="lazy"><span class="gallery-overlay"><h3>Character Design</h3><span>Visual Storytelling</span></span></button>
+                    <button class="gallery-item" type="button" data-category="character" data-full="IMG_2565.JPG"><img src="IMG_2565.JPG" alt="Character illustration" loading="lazy"><span class="gallery-overlay"><h3>Character Design</h3><span>Visual Storytelling</span></span></button>
+                    <button class="gallery-item" type="button" data-category="character" data-full="IMG_2566.JPG"><img src="IMG_2566.JPG" alt="Character design concept" loading="lazy"><span class="gallery-overlay"><h3>Character Design</h3><span>Visual Storytelling</span></span></button>
+                    <button class="gallery-item" type="button" data-category="character" data-full="IMG_2568.JPG"><img src="IMG_2568.JPG" alt="Character concept drawing" loading="lazy"><span class="gallery-overlay"><h3>Character Design</h3><span>Visual Storytelling</span></span></button>
+                    <button class="gallery-item" type="button" data-category="character" data-full="IMG_2567.JPG"><img src="IMG_2567.JPG" alt="Character illustration artwork" loading="lazy"><span class="gallery-overlay"><h3>Character Design</h3><span>Visual Storytelling</span></span></button>
+                    <button class="gallery-item" type="button" data-category="character" data-full="IMG_2570.JPG"><img src="IMG_2570.JPG" alt="Character design study" loading="lazy"><span class="gallery-overlay"><h3>Character Design</h3><span>Visual Storytelling</span></span></button>
+
+                    <button class="gallery-item wide" type="button" data-category="motif" data-full="photo_6012625606908427720_y.jpg"><img src="photo_6012625606908427720_y.jpg" alt="Motif and textile design" loading="lazy"><span class="gallery-overlay"><h3>Motif Design</h3><span>Textile Design</span></span></button>
+                    <button class="gallery-item wide" type="button" data-category="motif" data-full="photo_6012625606908427736_y.jpg"><img src="photo_6012625606908427736_y.jpg" alt="Textile motif design artwork" loading="lazy"><span class="gallery-overlay"><h3>Motif Design</h3><span>Textile Design</span></span></button>
+                    <button class="gallery-item wide" type="button" data-category="motif" data-full="photo_6012625606908427738_y.jpg"><img src="photo_6012625606908427738_y.jpg" alt="Pattern and motif artwork" loading="lazy"><span class="gallery-overlay"><h3>Motif Design</h3><span>Textile Design</span></span></button>
+                    <button class="gallery-item wide" type="button" data-category="motif" data-full="photo_6012625606908427740_y.jpg"><img src="photo_6012625606908427740_y.jpg" alt="Textile pattern study" loading="lazy"><span class="gallery-overlay"><h3>Motif Design</h3><span>Textile Design</span></span></button>
+                    <button class="gallery-item wide" type="button" data-category="motif" data-full="photo_6012625606908427742_y.jpg"><img src="photo_6012625606908427742_y.jpg" alt="Motif design pattern" loading="lazy"><span class="gallery-overlay"><h3>Motif Design</h3><span>Textile Design</span></span></button>
+                    <button class="gallery-item wide" type="button" data-category="motif" data-full="photo_6012625606908427744_y.jpg"><img src="photo_6012625606908427744_y.jpg" alt="Motif artwork for textile design" loading="lazy"><span class="gallery-overlay"><h3>Motif Design</h3><span>Textile Design</span></span></button>
+                    <button class="gallery-item wide" type="button" data-category="motif" data-full="photo_6012625606908427753_y.jpg"><img src="photo_6012625606908427753_y.jpg" alt="Decorative motif design" loading="lazy"><span class="gallery-overlay"><h3>Motif Design</h3><span>Textile Design</span></span></button>
+
+                    <button class="gallery-item" type="button" data-category="space" data-full="IMG_2939.JPG"><img src="IMG_2939.JPG" alt="Space design installation work" loading="lazy"><span class="gallery-overlay"><h3>Fish Do Not Remain Inside the Bowl</h3><span>Space Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="space" data-full="IMG_2936.JPG"><img src="IMG_2936.JPG" alt="Space design detail" loading="lazy"><span class="gallery-overlay"><h3>Fish Do Not Remain Inside the Bowl</h3><span>Space Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="space" data-full="IMG_2937.JPG"><img src="IMG_2937.JPG" alt="Spatial design work" loading="lazy"><span class="gallery-overlay"><h3>Fish Do Not Remain Inside the Bowl</h3><span>Space Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="space" data-full="IMG_2934.PNG"><img src="IMG_2934.PNG" alt="Space design concept" loading="lazy"><span class="gallery-overlay"><h3>Fish Do Not Remain Inside the Bowl</h3><span>Space Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="space" data-full="IMG_3647.JPG"><img src="IMG_3647.JPG" alt="Dena Clinic interior design work" loading="lazy"><span class="gallery-overlay"><h3>Dena Clinic Interior</h3><span>Space Design</span></span></button>
+                    <button class="gallery-item tall" type="button" data-category="space" data-full="interior1.png"><img src="interior1.png" alt="Interior space design visual" loading="lazy"><span class="gallery-overlay"><span>Space Design</span></span></button>
+
+                    <button class="gallery-item wide" type="button" data-category="brand" data-full="IMG_3637.JPG"><img src="IMG_3637.JPG" alt="Dena Clinic rebrand identity system" loading="lazy"><span class="gallery-overlay"><h3>Dena Clinic Rebrand</h3><span>Brand Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="brand" data-full="IMG_3644.JPG"><img src="IMG_3644.JPG" alt="Dena Clinic brand pattern" loading="lazy"><span class="gallery-overlay"><h3>Dena Clinic Rebrand</h3><span>Brand Design</span></span></button>
+                    <button class="gallery-item" type="button" data-category="brand" data-full="IMG_3646.JPG"><img src="IMG_3646.JPG" alt="Dena Clinic visual identity asset" loading="lazy"><span class="gallery-overlay"><h3>Dena Clinic Rebrand</h3><span>Brand Design</span></span></button>
                 </div>
             </div>
         </section>
 
-        <section class="skills reveal-section">
-            <div class="section-header">
-                <h2>Tools & <span class="wave-accent">Skills</span></h2>
-                <div class="section-divider"><span class="divider-dot"></span></div>
-                <p>Creative tools and expertise across design, illustration, and brand communication</p>
-            </div>
-            <div class="skills-content">
-                <span class="skill-tag reveal-item">Illustrator</span>
-                <span class="skill-tag reveal-item">Photoshop</span>
-                <span class="skill-tag reveal-item">InDesign</span>
-                <span class="skill-tag reveal-item">Figma</span>
-                <span class="skill-tag reveal-item">Webflow</span>
-                <span class="skill-tag reveal-item">Canva</span>
-                <span class="skill-tag reveal-item">Typography</span>
-                <span class="skill-tag reveal-item">HTML / CSS</span>
-                <span class="skill-tag reveal-item">WordPress</span>
-                <span class="skill-tag reveal-item">Fashion Illustration</span>
-                <span class="skill-tag reveal-item">Motif & Textile Design</span>
-                <span class="skill-tag reveal-item">Brand Identity</span>
-                <span class="skill-tag reveal-item">Visual Communication</span>
-                <span class="skill-tag reveal-item">Print & Digital Design</span>
-            </div>
-        </section>
-
-        <section id="contact" class="contact reveal-section">
-            <div class="section-header">
-                <h2>Let's Create <span class="wave-accent">Together</span></h2>
-                <div class="section-divider"><span class="divider-dot"></span></div>
-                <p>Open to fashion projects, brand collaborations, and creative partnerships</p>
-            </div>
-            <div class="contact-content">
-                <a href="mailto:denizz.mokhtari@gmail.com" class="contact-email reveal-item">denizz.mokhtari@gmail.com</a>
-                <div class="social-links reveal-item">
-                    <a href="https://instagram.com/dornellam" class="social-link" title="Instagram" target="_blank">IG</a>
-                    <a href="https://linkedin.com/in/denizmokhtari" class="social-link" title="LinkedIn" target="_blank">Li</a>
+        <section class="section alt" id="projects">
+            <div class="section-shell">
+                <div class="section-intro reveal">
+                    <div>
+                        <p class="eyebrow">Projects</p>
+                        <h2 class="section-title">A portfolio you can move through.</h2>
+                    </div>
+                    <p class="section-copy">Project cards translate the reference site's horizontal browsing into image-led creative work: title, discipline, year, and a concise design note.</p>
+                </div>
+                <div class="project-controls reveal" aria-label="Project carousel controls">
+                    <button class="round-btn" type="button" data-scroll="prev" aria-label="Previous projects">‹</button>
+                    <button class="round-btn" type="button" data-scroll="next" aria-label="Next projects">›</button>
+                </div>
+                <div class="project-rail reveal" id="projectRail" tabindex="0" aria-label="Featured project cards">
+                    <article class="project-card">
+                        <img src="IMG_2599.JPG" alt="Fashion illustration project" loading="lazy">
+                        <div class="project-body">
+                            <div class="project-meta"><span>Fashion Design</span><span>2021-Present</span></div>
+                            <h3>Fashion Illustration</h3>
+                            <p>Expressive digital sketches and garment visuals that support storytelling, lookbook language, and fashion communication.</p>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="photo_6012625606908427740_y.jpg" alt="Textile motif project" loading="lazy">
+                        <div class="project-body">
+                            <div class="project-meta"><span>Textile Design</span><span>Selected Work</span></div>
+                            <h3>Motif Systems</h3>
+                            <p>Pattern explorations and repeatable visual motifs developed for fashion, lifestyle, and surface design applications.</p>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="IMG_2564.JPG" alt="Character design project" loading="lazy">
+                        <div class="project-body">
+                            <div class="project-meta"><span>Illustration</span><span>2021-Present</span></div>
+                            <h3>Character Design</h3>
+                            <p>Original 2D characters and narrative illustration assets created in collaboration with writers and creative concepts.</p>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="IMG_2939.JPG" alt="Fish Do Not Remain Inside the Bowl project" loading="lazy">
+                        <div class="project-body">
+                            <div class="project-meta"><span>Space Design</span><span>Selected Work</span></div>
+                            <h3>Fish Do Not Remain Inside the Bowl</h3>
+                            <p>A spatial design work exploring containment, movement, and the emotional tension between object and environment.</p>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="IMG_3637.JPG" alt="Dena Clinic rebrand project" loading="lazy">
+                        <div class="project-body">
+                            <div class="project-meta"><span>Brand Design</span><span>2022-2023</span></div>
+                            <h3>Dena Clinic Rebrand</h3>
+                            <p>A visual identity system spanning logo, brand patterns, garment concepts, and social media assets.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <footer><p>&copy; 2026 Deniz Mokhtari. All rights reserved.</p></footer>
-    </div>
-
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-window" id="lightboxWindow">
-            <div class="lightbox-header">
-                <div class="lb-dot lb-dot-close" id="lightboxClose"></div>
-                <div class="lb-dot lb-dot-min"></div>
-                <div class="lb-dot lb-dot-max"></div>
+        <section class="section dark" id="expertise">
+            <div class="section-shell">
+                <div class="section-intro reveal">
+                    <div>
+                        <p class="eyebrow">Services & Expertise</p>
+                        <h2 class="section-title">A quiet, focused creative practice.</h2>
+                    </div>
+                    <p class="section-copy">My work moves between research and making: building visual systems, developing concepts, and translating creative ideas into refined communication.</p>
+                </div>
+                <div class="expertise-grid reveal">
+                    <article class="expertise-card" data-number="01"><h3>Fashion Research</h3><p>Research-led inquiry into branding, storytelling, emotional connection, and fashion communication.</p></article>
+                    <article class="expertise-card" data-number="02"><h3>Textile Design</h3><p>Motif development, surface pattern systems, color exploration, and textile-informed visual identity.</p></article>
+                    <article class="expertise-card" data-number="03"><h3>Brand Strategy</h3><p>Concept, positioning, campaign visuals, and cohesive identity assets for print and digital touchpoints.</p></article>
+                    <article class="expertise-card" data-number="04"><h3>Visual Identity</h3><p>Logo systems, typography, pattern language, art direction, and flexible brand applications.</p></article>
+                    <article class="expertise-card" data-number="05"><h3>Creative Direction</h3><p>Atmosphere, narrative, styling, and image-led storytelling across fashion and lifestyle contexts.</p></article>
+                    <article class="expertise-card" data-number="06"><h3>Illustration</h3><p>Fashion figures, 2D characters, visual story assets, and polished campaign-ready artwork.</p></article>
+                </div>
             </div>
-            <div class="lightbox-body"><img src="" alt="Full size" id="lightboxImg"></div>
+        </section>
+
+        <section class="section" id="featured">
+            <div class="section-shell">
+                <div class="section-intro reveal">
+                    <div>
+                        <p class="eyebrow">Featured Work</p>
+                        <h2 class="section-title">Selected studies and milestones.</h2>
+                    </div>
+                    <p class="section-copy">An editorial showcase of research, professional experience, and selected design systems.</p>
+                </div>
+                <div class="feature-grid reveal">
+                    <article class="feature-card large">
+                        <img src="photo_6012625606908427720_y.jpg" alt="Motif design selected research visual" loading="lazy">
+                        <div class="feature-copy">
+                            <p class="meta">Research / Present</p>
+                            <h3>MA Fashion research</h3>
+                            <p>Currently pursuing a Master of Arts in Fashion at Toronto Metropolitan University with a focus on marketing, branding, emotional storytelling, and brand communication.</p>
+                        </div>
+                    </article>
+                    <article class="feature-card">
+                        <img src="IMG_3644.JPG" alt="Dena Clinic brand identity pattern" loading="lazy">
+                        <div class="feature-copy">
+                            <p class="meta">Branding / 2022-2023</p>
+                            <h3>Dena Clinic identity</h3>
+                            <p>Led a full rebrand across logo, pattern language, staff garments, and digital content.</p>
+                        </div>
+                    </article>
+                    <article class="feature-card">
+                        <img src="IMG_2571.JPG" alt="Fashion illustration freelance work" loading="lazy">
+                        <div class="feature-copy">
+                            <p class="meta">Freelance / 2021-Present</p>
+                            <h3>Illustration practice</h3>
+                            <p>Creating fashion illustrations and original characters for designers, apparel brands, writers, and creative collaborators.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section alt reveal">
+            <blockquote>"I design visual systems that carry feeling - where fashion, identity, and storytelling meet with clarity."</blockquote>
+            <cite>Personal creative statement</cite>
+        </section>
+
+        <section class="section alt" id="research">
+            <div class="section-shell">
+                <div class="section-intro reveal">
+                    <div>
+                        <p class="eyebrow">Blog / Writing / Research</p>
+                        <h2 class="section-title">Research notes.</h2>
+                    </div>
+                    <p class="section-copy">Short editorial entries shaped from the themes already present in my portfolio: fashion branding, textile thinking, and visual communication.</p>
+                </div>
+                <div class="writing-grid reveal">
+                    <article class="writing-card">
+                        <div class="meta"><span>Research</span><span>2026</span></div>
+                        <div>
+                            <h3>Emotional storytelling in fashion branding</h3>
+                            <p>How visual language, narrative, and merchandising can deepen the connection between audience and brand.</p>
+                        </div>
+                    </article>
+                    <article class="writing-card">
+                        <div class="meta"><span>Design Note</span><span>2026</span></div>
+                        <div>
+                            <h3>Textile motifs as brand memory</h3>
+                            <p>A look at how repeat patterns can become recognizable identity assets across fashion, print, and digital systems.</p>
+                        </div>
+                    </article>
+                    <article class="writing-card">
+                        <div class="meta"><span>Practice</span><span>2026</span></div>
+                        <div>
+                            <h3>From illustration to campaign image</h3>
+                            <p>Notes on translating expressive fashion sketches into polished visual communication for brands and creative teams.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="faq">
+            <div class="section-shell faq-grid reveal">
+                <div>
+                    <p class="eyebrow">FAQ's</p>
+                    <h2 class="section-title">Frequently asked questions.</h2>
+                </div>
+                <div class="faq-list">
+                    <article class="faq-item open">
+                        <button class="faq-question" type="button" aria-expanded="true"><span>What kind of projects do I work on?</span><span>+</span></button>
+                        <div class="faq-answer"><p>I work across fashion illustration, character design, textile motifs, brand identity, campaign visuals, spatial concepts, and research-led visual communication.</p></div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>Am I available for collaborations?</span><span>+</span></button>
+                        <div class="faq-answer"><p>Yes. I am open to fashion projects, brand collaborations, visual identity work, illustration commissions, and creative partnerships.</p></div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>What is my research focus?</span><span>+</span></button>
+                        <div class="faq-answer"><p>My current MA Fashion research explores marketing and branding strategies through emotional storytelling, brand communication, and audience connection.</p></div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>What tools and methods do I use?</span><span>+</span></button>
+                        <div class="faq-answer"><p>I use Illustrator, Photoshop, InDesign, Figma, Webflow, Canva, typography, HTML/CSS, WordPress, fashion illustration, motif design, and brand identity methods.</p></div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>How can someone contact me?</span><span>+</span></button>
+                        <div class="faq-answer"><p>Email me at denizz.mokhtari@gmail.com or connect through Instagram and LinkedIn using the links below.</p></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-cta" id="contact">
+            <img src="IMG_2934.PNG" alt="Space design visual background" loading="lazy">
+            <div class="contact-content reveal">
+                <p class="eyebrow">Get In Touch</p>
+                <h2>Let's create something quietly memorable.</h2>
+                <p>Open to fashion projects, brand collaborations, creative direction, illustration, research conversations, and visual identity work.</p>
+                <a href="mailto:denizz.mokhtari@gmail.com" class="button light">Contact Me</a>
+                <div class="contact-lines">
+                    <a href="mailto:denizz.mokhtari@gmail.com">denizz.mokhtari@gmail.com</a>
+                    <a href="https://instagram.com/dornellam" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://linkedin.com/in/denizmokhtari" target="_blank" rel="noreferrer">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">Deniz Mokhtari</div>
+                <p>Marketing and visual design specialist working across fashion, textile design, branding, illustration, and research.</p>
+            </div>
+            <nav aria-label="Footer navigation">
+                <h3>Navigation</h3>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#research">Research</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <nav aria-label="Project categories">
+                <h3>Categories</h3>
+                <a href="#portfolio">Fashion Design</a>
+                <a href="#portfolio">Character Design</a>
+                <a href="#portfolio">Motif Design</a>
+                <a href="#portfolio">Space Design</a>
+                <a href="#portfolio">Brand Design</a>
+            </nav>
+            <nav aria-label="Social links">
+                <h3>Connect</h3>
+                <a href="mailto:denizz.mokhtari@gmail.com">Email</a>
+                <a href="https://instagram.com/dornellam" target="_blank" rel="noreferrer">Instagram</a>
+                <a href="https://linkedin.com/in/denizmokhtari" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="cv.pdf">CV</a>
+            </nav>
         </div>
+        <p class="copyright">&copy; 2026 Deniz Mokhtari. All rights reserved.</p>
+    </footer>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded portfolio image">
+        <button type="button" id="lightboxClose" aria-label="Close image">&times;</button>
+        <img src="" alt="" id="lightboxImg">
     </div>
 
     <script>
         (function() {
-            var loadStart = Date.now();
+            var loader = document.getElementById('loader');
             function hideLoader() {
-                var elapsed = Date.now() - loadStart;
-                setTimeout(function() { document.getElementById('loader').classList.add('hidden'); }, Math.max(0, 1000 - elapsed));
+                if (loader) loader.classList.add('hidden');
             }
-            if (document.readyState === 'complete') hideLoader();
-            else window.addEventListener('load', hideLoader);
+            if (document.readyState === 'complete') window.setTimeout(hideLoader, 350);
+            else window.addEventListener('load', function() { window.setTimeout(hideLoader, 350); });
         })();
 
-        var navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            navbar.classList.toggle('scrolled', window.scrollY > 100);
+        var siteNav = document.getElementById('siteNav');
+        function updateNav() {
+            siteNav.classList.toggle('scrolled', window.scrollY > 70);
+        }
+        updateNav();
+        window.addEventListener('scroll', updateNav, { passive: true });
+
+        var hero = document.querySelector('.hero');
+        var canAnimateHero = hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (canAnimateHero) {
+            hero.addEventListener('mousemove', function(event) {
+                var rect = hero.getBoundingClientRect();
+                var x = (event.clientX - rect.left) / rect.width - 0.5;
+                var y = (event.clientY - rect.top) / rect.height - 0.5;
+                hero.style.setProperty('--hero-shift-x', (-x * 18).toFixed(2) + 'px');
+                hero.style.setProperty('--hero-shift-y', (-y * 14).toFixed(2) + 'px');
+            });
+            hero.addEventListener('mouseleave', function() {
+                hero.style.setProperty('--hero-shift-x', '0px');
+                hero.style.setProperty('--hero-shift-y', '0px');
+            });
+        }
+
+        var menuToggle = document.querySelector('.menu-toggle');
+        var mobileMenu = document.getElementById('mobileMenu');
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.textContent = 'Menu';
+            document.body.style.overflow = '';
+        }
+        menuToggle.addEventListener('click', function() {
+            var isOpen = mobileMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.textContent = isOpen ? 'Close' : 'Menu';
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+        mobileMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', closeMenu);
+        });
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 980 && mobileMenu.classList.contains('open')) closeMenu();
         });
 
-        var revealSections = document.querySelectorAll('.reveal-section');
-        var revealOnScroll = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('revealed'); });
-        }, { threshold: 0.02 });
-        revealSections.forEach(function(s) { revealOnScroll.observe(s); });
-
-        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                var t = document.querySelector(this.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(event) {
+                var target = document.querySelector(anchor.getAttribute('href'));
+                if (!target) return;
+                event.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
+        var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            revealObserver.observe(el);
+        });
+
         var filterBtns = document.querySelectorAll('.filter-btn');
-        var portfolioItems = document.querySelectorAll('.portfolio-item');
+        var galleryItems = document.querySelectorAll('.gallery-item');
         filterBtns.forEach(function(btn) {
             btn.addEventListener('click', function() {
-                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                filterBtns.forEach(function(item) { item.classList.remove('active'); });
                 btn.classList.add('active');
-                var f = btn.getAttribute('data-filter');
-                portfolioItems.forEach(function(item) {
-                    item.classList.toggle('hidden', f !== 'all' && item.getAttribute('data-category') !== f);
+                var filter = btn.getAttribute('data-filter');
+                galleryItems.forEach(function(item) {
+                    item.classList.toggle('hidden', filter !== 'all' && item.getAttribute('data-category') !== filter);
                 });
+            });
+        });
+
+        var projectRail = document.getElementById('projectRail');
+        document.querySelectorAll('[data-scroll]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var direction = btn.getAttribute('data-scroll') === 'next' ? 1 : -1;
+                projectRail.scrollBy({ left: direction * 430, behavior: 'smooth' });
+            });
+        });
+
+        document.querySelectorAll('.faq-item').forEach(function(item) {
+            var button = item.querySelector('.faq-question');
+            var answer = item.querySelector('.faq-answer');
+            if (item.classList.contains('open')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+            button.addEventListener('click', function() {
+                var isOpen = item.classList.toggle('open');
+                button.setAttribute('aria-expanded', String(isOpen));
+                answer.style.maxHeight = isOpen ? answer.scrollHeight + 'px' : '0px';
             });
         });
 
         var lightbox = document.getElementById('lightbox');
         var lightboxImg = document.getElementById('lightboxImg');
-        var lightboxWindow = document.getElementById('lightboxWindow');
         var lightboxClose = document.getElementById('lightboxClose');
-
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        var lastFocused = null;
+        galleryItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                lastFocused = document.activeElement;
+                lightboxImg.src = item.getAttribute('data-full');
+                lightboxImg.alt = item.querySelector('img').alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                lightboxClose.focus();
+            });
+        });
         function closeLightbox() {
             lightbox.classList.remove('active');
+            lightboxImg.src = '';
             document.body.style.overflow = '';
+            if (lastFocused) lastFocused.focus();
         }
-
-        portfolioItems.forEach(function(item) {
-            item.addEventListener('click', function() { openLightbox(item.querySelector('img').src); });
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(event) {
+            if (event.target === lightbox) closeLightbox();
         });
-        lightboxClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
-        lightbox.addEventListener('click', function(e) { if (!lightboxWindow.contains(e.target)) closeLightbox(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
-
-        var navToggle = document.querySelector('.nav-toggle');
-        var mobileMenu = document.getElementById('mobileMenu');
-        navToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-        });
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                if (lightbox.classList.contains('active')) closeLightbox();
+                if (mobileMenu.classList.contains('open')) closeMenu();
             }
-        });
-        mobileMenu.querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
-                var t = document.querySelector(this.getAttribute('href'));
-                if (t) setTimeout(function() { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-            });
         });
     </script>
 </body>
