@@ -177,6 +177,82 @@
             text-decoration: none;
         }
 
+        .category-gate {
+            min-height: 100svh;
+            display: grid;
+            place-items: center;
+            padding: 7.5rem 5vw 4rem;
+            background:
+                linear-gradient(135deg, rgba(255, 250, 242, 0.94), rgba(236, 225, 211, 0.88)),
+                var(--cream);
+        }
+        .category-gate.is-dismissed {
+            display: none;
+        }
+        .category-gate-shell {
+            width: min(1180px, 100%);
+            display: grid;
+            gap: clamp(2rem, 5vw, 4rem);
+        }
+        .category-gate-copy {
+            display: grid;
+            gap: 1rem;
+            text-align: center;
+            justify-items: center;
+        }
+        .category-gate-copy h1 {
+            max-width: 980px;
+            font-size: clamp(4rem, 9vw, 8.6rem);
+        }
+        .category-gate-copy p {
+            max-width: 660px;
+            font-size: clamp(1rem, 1.6vw, 1.2rem);
+        }
+        .category-options {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.85rem;
+        }
+        .category-card {
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.4rem;
+            padding: 1.2rem;
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            background: rgba(255, 250, 242, 0.54);
+            color: var(--ink);
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+        }
+        .category-card:hover,
+        .category-card:focus-visible {
+            transform: translateY(-6px);
+            background: var(--paper);
+            box-shadow: var(--shadow);
+        }
+        .category-card span {
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .category-card strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 500;
+            line-height: 1;
+        }
+        .category-card em {
+            color: var(--soft-ink);
+            font-size: 0.86rem;
+            font-style: normal;
+        }
+
         .hero {
             min-height: 100svh;
             position: relative;
@@ -231,6 +307,10 @@
             max-width: 900px;
             font-size: clamp(4rem, 8vw, 7.8rem);
             letter-spacing: 0;
+        }
+        .hero-category-label {
+            color: rgba(255, 250, 242, 0.78);
+            margin-bottom: 0.9rem;
         }
         .hero-bottom {
             display: grid;
@@ -503,6 +583,9 @@
             border-radius: 28px;
             background: rgba(255, 250, 242, 0.62);
             overflow: hidden;
+        }
+        .project-card.hidden {
+            display: none;
         }
         .project-card img {
             width: 100%;
@@ -860,6 +943,7 @@
                 grid-template-columns: 1fr;
             }
             .hero-actions { justify-content: center; }
+            .category-options { grid-template-columns: repeat(2, 1fr); }
             .gallery-grid { grid-template-columns: repeat(6, 1fr); }
             .gallery-item,
             .gallery-item.wide { grid-column: span 3; }
@@ -892,6 +976,8 @@
             .project-rail {
                 grid-auto-columns: 86%;
             }
+            .category-options { grid-template-columns: 1fr; }
+            .category-card { min-height: 160px; }
             .expertise-grid,
             .feature-grid,
             .writing-grid,
@@ -921,7 +1007,7 @@
 
     <header class="site-nav" id="siteNav">
         <ul class="nav-links" aria-label="Primary navigation">
-            <li><a href="#home" data-label="Home"><span>Home</span></a></li>
+            <li><a href="#hero" data-label="Home"><span>Home</span></a></li>
             <li><a href="#about" data-label="About"><span>About</span></a></li>
             <li><a href="#projects" data-label="Projects"><span>Projects</span></a></li>
             <li><a href="#research" data-label="Research"><span>Research</span></a></li>
@@ -932,7 +1018,7 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <nav aria-label="Mobile navigation">
-            <a href="#home">Home</a>
+            <a href="#hero">Home</a>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#research">Research</a>
@@ -940,16 +1026,34 @@
         </nav>
     </div>
 
-    <section class="hero" id="home">
+    <section class="category-gate" id="home" aria-labelledby="categoryGateTitle">
+        <div class="category-gate-shell">
+            <div class="category-gate-copy">
+                <p class="eyebrow">Choose a direction</p>
+                <h1 id="categoryGateTitle">What would you like to see first?</h1>
+                <p>Select a portfolio category and the site will shape the hero, gallery, and featured project cards around that part of my practice.</p>
+            </div>
+            <div class="category-options" aria-label="Portfolio categories">
+                <button class="category-card" type="button" data-category-choice="space"><span>01</span><strong>Space Design</strong><em>Interior, installation, and spatial atmosphere.</em></button>
+                <button class="category-card" type="button" data-category-choice="fashion"><span>02</span><strong>Fashion Design</strong><em>Illustration, garments, and fashion communication.</em></button>
+                <button class="category-card" type="button" data-category-choice="character"><span>03</span><strong>Character Design</strong><em>2D characters and narrative illustration.</em></button>
+                <button class="category-card" type="button" data-category-choice="motif"><span>04</span><strong>Motif Design</strong><em>Textile patterns and surface systems.</em></button>
+                <button class="category-card" type="button" data-category-choice="brand"><span>05</span><strong>Brand Design</strong><em>Identity systems and campaign visuals.</em></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero" id="hero">
         <div class="hero-media" aria-hidden="true">
-            <img src="interior2.png" alt="" fetchpriority="high">
+            <img src="interior2.png" alt="" fetchpriority="high" id="heroImage">
         </div>
         <div class="hero-inner">
             <div>
+                <p class="hero-category-label eyebrow reveal" id="heroCategoryLabel">Space Design</p>
                 <h1 class="reveal">Deniz Mokhtari</h1>
             </div>
             <div class="hero-bottom reveal">
-                <p class="hero-copy">Toronto-based marketing and visual design specialist, MA Fashion graduate, creating fashion illustrations, textile motifs, brand systems, spatial concepts, and research-led visual communication.</p>
+                <p class="hero-copy" id="heroCopy">Toronto-based marketing and visual design specialist, MA Fashion graduate, creating spatial concepts, interior atmospheres, brand systems, and research-led visual communication.</p>
                 <div class="hero-actions">
                     <a href="#projects" class="button light">View Projects</a>
                     <a href="#contact" class="button ghost">Collaborate</a>
@@ -1051,7 +1155,7 @@
                     <button class="round-btn" type="button" data-scroll="next" aria-label="Next projects">›</button>
                 </div>
                 <div class="project-rail reveal" id="projectRail" tabindex="0" aria-label="Featured project cards">
-                    <article class="project-card">
+                    <article class="project-card" data-category="fashion">
                         <img src="IMG_2599.JPG" alt="Fashion illustration project" loading="lazy">
                         <div class="project-body">
                             <div class="project-meta"><span>Fashion Design</span><span>2021-Present</span></div>
@@ -1059,7 +1163,7 @@
                             <p>Expressive digital sketches and garment visuals that support storytelling, lookbook language, and fashion communication.</p>
                         </div>
                     </article>
-                    <article class="project-card">
+                    <article class="project-card" data-category="motif">
                         <img src="photo_6012625606908427740_y.jpg" alt="Textile motif project" loading="lazy">
                         <div class="project-body">
                             <div class="project-meta"><span>Textile Design</span><span>Selected Work</span></div>
@@ -1067,7 +1171,7 @@
                             <p>Pattern explorations and repeatable visual motifs developed for fashion, lifestyle, and surface design applications.</p>
                         </div>
                     </article>
-                    <article class="project-card">
+                    <article class="project-card" data-category="character">
                         <img src="IMG_2564.JPG" alt="Character design project" loading="lazy">
                         <div class="project-body">
                             <div class="project-meta"><span>Illustration</span><span>2021-Present</span></div>
@@ -1075,7 +1179,7 @@
                             <p>Original 2D characters and narrative illustration assets created in collaboration with writers and creative concepts.</p>
                         </div>
                     </article>
-                    <article class="project-card">
+                    <article class="project-card" data-category="space">
                         <img src="IMG_2939.JPG" alt="Fish Do Not Remain Inside the Bowl project" loading="lazy">
                         <div class="project-body">
                             <div class="project-meta"><span>Space Design</span><span>Selected Work</span></div>
@@ -1083,7 +1187,7 @@
                             <p>A spatial design work exploring containment, movement, and the emotional tension between object and environment.</p>
                         </div>
                     </article>
-                    <article class="project-card">
+                    <article class="project-card" data-category="brand">
                         <img src="IMG_3637.JPG" alt="Dena Clinic rebrand project" loading="lazy">
                         <div class="project-body">
                             <div class="project-meta"><span>Brand Design</span><span>2022-2023</span></div>
@@ -1353,16 +1457,79 @@
             revealObserver.observe(el);
         });
 
+        var categoryProfiles = {
+            all: {
+                label: 'Creative Portfolio',
+                image: 'interior2.png',
+                copy: 'Toronto-based marketing and visual design specialist, MA Fashion graduate, creating fashion illustrations, textile motifs, brand systems, spatial concepts, and research-led visual communication.'
+            },
+            space: {
+                label: 'Space Design',
+                image: 'interior2.png',
+                copy: 'Toronto-based marketing and visual design specialist, MA Fashion graduate, creating spatial concepts, interior atmospheres, brand systems, and research-led visual communication.'
+            },
+            fashion: {
+                label: 'Fashion Design',
+                image: 'IMG_2597.JPG',
+                copy: 'Fashion illustration and visual communication shaped through garment studies, editorial imagery, textile thinking, and research-led storytelling.'
+            },
+            character: {
+                label: 'Character Design',
+                image: 'IMG_2564.JPG',
+                copy: 'Original 2D character design and narrative illustration for visual worlds, storytelling concepts, and expressive creative direction.'
+            },
+            motif: {
+                label: 'Motif Design',
+                image: 'photo_6012625606908427720_y.jpg',
+                copy: 'Motif and textile design exploring repeat patterns, surface systems, color, memory, and brand-ready visual language.'
+            },
+            brand: {
+                label: 'Brand Design',
+                image: 'IMG_3637.JPG',
+                copy: 'Brand identity and visual communication across logo systems, campaign assets, pattern language, and cohesive digital and print touchpoints.'
+            }
+        };
+
+        var categoryGate = document.querySelector('.category-gate');
+        var heroImage = document.getElementById('heroImage');
+        var heroCategoryLabel = document.getElementById('heroCategoryLabel');
+        var heroCopy = document.getElementById('heroCopy');
         var filterBtns = document.querySelectorAll('.filter-btn');
         var galleryItems = document.querySelectorAll('.gallery-item');
+        var projectCards = document.querySelectorAll('.project-card');
+
+        function applyCategory(category, shouldEnterHero) {
+            var activeCategory = categoryProfiles[category] ? category : 'all';
+            var profile = categoryProfiles[activeCategory];
+            heroImage.src = profile.image;
+            heroCategoryLabel.textContent = profile.label;
+            heroCopy.textContent = profile.copy;
+
+            filterBtns.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-filter') === activeCategory);
+            });
+            galleryItems.forEach(function(item) {
+                item.classList.toggle('hidden', activeCategory !== 'all' && item.getAttribute('data-category') !== activeCategory);
+            });
+            projectCards.forEach(function(card) {
+                card.classList.toggle('hidden', activeCategory !== 'all' && card.getAttribute('data-category') !== activeCategory);
+            });
+
+            if (shouldEnterHero) {
+                categoryGate.classList.add('is-dismissed');
+                document.getElementById('hero').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        document.querySelectorAll('[data-category-choice]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                applyCategory(btn.getAttribute('data-category-choice'), true);
+            });
+        });
+
         filterBtns.forEach(function(btn) {
             btn.addEventListener('click', function() {
-                filterBtns.forEach(function(item) { item.classList.remove('active'); });
-                btn.classList.add('active');
-                var filter = btn.getAttribute('data-filter');
-                galleryItems.forEach(function(item) {
-                    item.classList.toggle('hidden', filter !== 'all' && item.getAttribute('data-category') !== filter);
-                });
+                applyCategory(btn.getAttribute('data-filter'), false);
             });
         });
 
